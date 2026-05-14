@@ -62,6 +62,21 @@ export default defineNuxtConfig({
           purpose: 'maskable'
         }
       ],
+      screenshots: [
+        {
+          src: '/screenshots/desktop.png',
+          sizes: '1920x1080',
+          type: 'image/png',
+          form_factor: 'wide',
+          label: 'Vue desktop'
+        },
+        {
+          src: '/screenshots/mobile.png',
+          sizes: '390x844',
+          type: 'image/png',
+          label: 'Vue mobile'
+        }
+      ]
     },
     client: {
       installPrompt: true,
