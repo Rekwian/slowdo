@@ -1,0 +1,39 @@
+{
+  "page": {
+    "index": {
+      "noTaskWithDone": {
+        "title": "Tu as déjà fait ta tache quotidienne",
+        "text": "Tu peux te détendre tranquillement."
+      },
+      "noTaskWithoutDone": {
+        "title": "C'est calme.",
+        "text": "Tu peux te détendre tranquillement."
+      },
+      "normalTask": {
+        "title": "Vas-y.",
+        "text": "Tranquillement"
+      },
+      "actions": {
+        "canDoAnotherTask": "Je me sens de faire une autre tache",
+        "addTask": "+ une tâche"
+      }
+    },
+    "createTask": {
+      "step1": {
+        "title": "Quel est le but de cette tâche ?",
+        "subTitle": "Sans pression, prends le temps.",
+        "placeholder": "écrire quelque chose…",
+        "validationAction": "Ça me semble bien"
+      },
+      "step2": {
+        "title": "Comment tu la sens, cette tâche ?",
+        "choice1": "légère ☁️",
+        "choice2": "lourde 🪨"
+      },
+      "step3": {
+        "title": "Y a-t-il une échéance ?",
+        "validationAction": "C'est bon pour moi"
+      }
+    }
+  }
+}

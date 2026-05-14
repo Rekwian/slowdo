@@ -1,0 +1,21 @@
+networks:
+  traefik-network:
+    driver: overlay
+    attachable: true
+    external: true
+
+services:
+  app:
+    image: oven/bun:1
+    volumes:
+      - .output:/app
+    labels:
+      - traefik.http.routers.slowdo.rule=Host(`slowdo.localhost`)
+      - traefik.http.services.slowdo.loadbalancer.server.port=3000
+      - traefik.http.routers.slowdo.entrypoints=websecure
+      - traefik.http.routers.slowdo.tls.certresolver=letsencrypt
+    command: [ "bun", "run", "/app/server/index.mjs" ]
+    networks:
+      - traefik-network
+    working_dir: /app
+  

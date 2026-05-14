@@ -1,0 +1,14 @@
+{
+  "page": {
+    "index": {
+      "noTaskWithDone": {
+        "title": "You have already done you daily task",
+        "text": "You can relax peacefully."
+      },
+      "noTaskWithoutDone": {
+        "title": "It's calm.",
+        "text": "You can relax peacefully."
+      }
+    }
+  }
+}
