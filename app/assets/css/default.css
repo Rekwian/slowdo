@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400&display=swap');
-
 :root {
-  --color-background: #1e1e2a;
-  --color-background-soft: #252535;
-  --color-background-hover: #2e2e42;
-  --color-surface: #292940;
-  --color-background-text: #e8e8f0;
-  --color-text-muted: #9090b0;
-  --color-border: #4a7c6f;
-  --color-accent: #7ec8b8;
-  --color-accent-glow: rgba(126, 200, 184, 0.12);
+  --color-background: hsl(240 17% 14%);
+  --color-background-soft: hsl(240 18% 18%);
+  --color-background-hover: hsl(240 18% 22%);
+  --color-background-text: hsl(240 21% 93%);
+  --color-background-text-muted: hsl(240 17% 63%);
+  --color-main: hsl(164 25% 39%);
+  --color-main-hover: hsl(167 40% 64%);
+  --color-main-glow: hsla(167 40% 64% / 0.12);
+  --color-surface: hsl(240 22% 21%);
 
   --radius-soft: 1.5rem;
   --radius-pill: 3rem;
@@ -23,28 +21,18 @@
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 1.7;
   background-color: var(--color-background);
   color: var(--color-background-text);
-  -webkit-font-smoothing: antialiased;
-}
-
-h1 {
-  font-family: 'Lora', serif;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--color-background-text);
-  max-width: 560px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
 }
 
 button,
@@ -60,86 +48,31 @@ input:not([type='radio']):not([type='checkbox']) {
   appearance: none;
   background-color: transparent;
   border: none;
-  border-bottom: 1.5px solid var(--color-border);
+  border-bottom: 1.5px solid var(--color-main);
   color: var(--color-background-text);
+  font-family: 'Quicksand', sans-serif;
   font-size: clamp(1.4rem, 3.5vw, 2rem);
-  font-family: 'Lora', serif;
-  font-weight: 400;
   font-style: italic;
-  margin-top: var(--space-lg);
+  font-weight: 400;
   max-width: 580px;
+  outline: none;
   padding: 0.4rem 0.2rem 0.6rem;
   text-align: center;
-  width: 100%;
   transition: border-color var(--transition), color var(--transition);
-  outline: none;
+  width: 100%;
 
   &::placeholder {
-    color: var(--color-text-muted);
+    color: var(--color-background-text-muted);
   }
 
   &:hover,
   &:focus {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    border-color: var(--color-main-hover);
+    color: var(--color-main-hover);
   }
 }
 
 /* datetime-local */
 input[type='datetime-local'] {
   color-scheme: dark;
-}
-
-/* ── Button ── */
-button,
-.button {
-  appearance: none;
-  background-color: transparent;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  color: var(--color-background-text);
-  cursor: pointer;
-  display: inline-block;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
-  margin-top: var(--space-lg);
-  padding: 0.75rem 2rem;
-  text-decoration: none;
-  transition: border-color var(--transition), color var(--transition),
-    background-color var(--transition), box-shadow var(--transition);
-
-  &:hover,
-  &:focus {
-    background-color: var(--color-accent-glow);
-    border-color: var(--color-accent);
-    box-shadow: 0 0 18px var(--color-accent-glow);
-    color: var(--color-accent);
-    outline: none;
-  }
-}
-
-/* ── Screen layout helper ── */
-.screen {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100%;
-  padding: var(--space-xl) var(--space-md);
-  text-align: center;
-  animation: fadeUp 0.5s ease both;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }

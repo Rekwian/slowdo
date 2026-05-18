@@ -27,24 +27,16 @@ watch(currentLocale, (code) => {
   min-height: 100dvh;
   padding: 2rem;
   width: 100vw;
-
-  /* Subtle radial glow at the top-center for depth */
-  background-image: radial-gradient(
-    ellipse 70% 40% at 50% 0%,
-    rgba(126, 200, 184, 0.05) 0%,
-    transparent 70%
-  );
 }
 
 .localSelect {
   background-color: transparent;
   border: 0;
-  color: var(--color-background-text);
-  opacity: 0.5;
-  color: white;
-  position: absolute;
   bottom: 1rem;
+  color: var(--color-background-text);
   left: 1rem;
+  opacity: 0.5;
+  position: absolute;
   z-index: 100;
 
   option {

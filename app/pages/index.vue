@@ -1,28 +1,36 @@
 <template lang="pug">
-div(v-if="!currentTask && !toDoTasks?.length" class="screen")
-  h1 {{ noTaskText.title }}
-  p(:class="$style.subtitle") {{ noTaskText.text }}
+template(v-if="!currentTask && !toDoTasks?.length")
+  ui-wrapper(
+    :title="noTaskText.title"
+    :subtitle="noTaskText.text"
+  )
 
-div(v-if="!currentTask && toDoTasks?.length" class="screen")
-  h1 {{ noTaskText.title }}
-  p(:class="$style.subtitle") {{ noTaskText.text }}
-  button(v-if="toDoTasks.length" @click="selectTask(true)") {{ $t('page.index.actions.canDoAnotherTask') }}
+template(v-if="!currentTask && toDoTasks?.length")
+  ui-wrapper(
+    :title="noTaskText.title"
+    :subtitle="noTaskText.text"
+  )
+    ui-button(v-if="toDoTasks.length" @click="() => selectTask(true)") {{ $t('page.index.actions.canDoAnotherTask') }}
 
-div(v-if="currentTask" class="screen")
-  h1 {{ $t('page.index.normalTask.title') }}
-  p(:class="$style.subtitle") {{ $t('page.index.normalTask.text') }}
+template(v-if="currentTask")
+  ui-wrapper(
+    :title="$t('page.index.normalTask.title')"
+    :subtitle="$t('page.index.normalTask.text')"
+  )
+    p(:class="$style.taskName") {{ currentTask.name }}
+    template(#actions)
+      div(:class="$style.actions")
+        ui-button(@click="checkTask") {{ $t('page.index.normalTask.done') }}
+        button(:class="$style.ghostLink" @click="switchTask") {{ $t('page.index.normalTask.reroll') }}
 
-  label(:class="$style.taskCheckbox")
-    input(type="checkbox" @change="checkTask")
-    div(:class="$style.checkboxInput")
-      svg(v-if="false" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg")
-        path(d="M1 5l3.5 3.5L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
-    span(:class="$style.taskName") {{ currentTask.name }}
-
-nuxt-link(
-  :class="[$style.addFab, 'button']"
+ui-button(
+  :class="$style.addFab"
   :to="$localePath('create-task')"
 ) {{ $t('page.index.actions.addTask') }}
+
+nav(v-if="false" :class="$style.cornerNav")
+  nuxt-link(:class="$style.ghostLink" :to="$localePath('tasks')") {{ $t('page.index.actions.taskList') }}
+  nuxt-link(:class="$style.ghostLink" :to="$localePath('login')") {{ $t('page.index.actions.login') }}
 </template>
 
 <script setup>
@@ -30,17 +38,20 @@ const { t } = useI18n();
 const {
   currentTask,
   getTasks,
+  resetSelectedTasks,
   selectTask,
+  switchTask,
   todayDoneTasks,
   toDoTasks,
   updateTask,
 } = useTodo();
 
-function checkTask() {
-  updateTask({
+async function checkTask() {
+  await updateTask({
     ...currentTask.value,
     done: Temporal.Now.plainDateTimeISO()
   });
+  await resetSelectedTasks();
 }
 
 const noTaskText = computed(() => {
@@ -50,6 +61,7 @@ const noTaskText = computed(() => {
       text: t('page.index.noTaskWithDone.text'),
     }
   }
+
   return {
     title: t('page.index.noTaskWithoutDone.title'),
     text: t('page.index.noTaskWithoutDone.text'),
@@ -58,25 +70,48 @@ const noTaskText = computed(() => {
 
 onMounted(async () => {
   await getTasks();
-
-  selectTask();
+  await selectTask();
 })
 </script>
 
 <style module>
-.subtitle {
-  color: var(--color-text-muted);
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  margin-top: 0.75rem;
-  text-transform: lowercase;
+.addFab {
+  bottom: 2.5rem;
+  margin-top: 0;
+  position: fixed;
+  right: 2.5rem;
 }
 
-.addFab {
+.cornerNav {
+  align-items: center;
+  display: flex;
+  gap: 1.25rem;
   position: fixed;
-  bottom: 2.5rem;
-  right: 2.5rem;
-  margin-top: 0;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
+.ghostLink {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: var(--color-background-text-muted);
+  cursor: pointer;
+  display: flex;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-style: italic;
+  letter-spacing: 0.03em;
+  min-height: 44px; /* touch target minimum recommandé */
+  text-decoration: none;
+  transition: color var(--transition);
+
+  &:hover,
+  &:focus {
+    color: var(--color-main-hover);
+    text-decoration: underline;
+    text-decoration-color: var(--color-main);
+    text-decoration-thickness: 1px;
+  }
 }
 
 .taskCheckbox {
@@ -84,39 +119,14 @@ onMounted(async () => {
   cursor: pointer;
   display: flex;
   gap: 1.25rem;
-  margin-top: 3rem;
 
   input {
     display: none;
   }
-
-  /* When checked, tint the box */
-  input:checked + .checkboxInput {
-    background-color: var(--color-accent-glow);
-    border-color: var(--color-accent);
-  }
-}
-
-.checkboxInput {
-  border: 1.5px solid var(--color-border);
-  border-radius: 0.6rem;
-  background-color: transparent;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  transition: background-color var(--transition), border-color var(--transition);
-
-  &:hover {
-    border-color: var(--color-accent);
-  }
 }
 
 .taskName {
-  font-family: 'Lora', serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 1.3rem;
   font-style: italic;
 
@@ -124,5 +134,19 @@ onMounted(async () => {
     font-size: 1.2em;
     text-transform: uppercase;
   }
+}
+
+.actions {
+  align-items: center;
+  color: var(--color-background-text-muted);
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-style: italic;
+  gap: 2rem;
+  letter-spacing: 0.03em;
+  min-height: 44px; /* touch target minimum recommandé */
+  text-decoration: none;
+  transition: color var(--transition);
 }
 </style>

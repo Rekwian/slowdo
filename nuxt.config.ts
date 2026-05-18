@@ -8,7 +8,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   googleFonts: {
     families: {
-      'Playpen Sans': '100..800'
+      'Quicksand': '300..700',
+      'Nunito': '200..900'
     }
   },
   modules: [

@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint:css": "stylelint **/*.{vue,scss,css}"
   },
   "dependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
@@ -21,6 +22,13 @@
   "devDependencies": {
     "@vite-pwa/assets-generator": "^1.0.2",
     "@vue/language-plugin-pug": "^3.2.7",
-    "pug": "^3.0.4"
+    "globals": "^17.6.0",
+    "pug": "^3.0.4",
+    "stylelint": "^17.11.1",
+    "stylelint-config-recommended-scss": "^17.0.1",
+    "stylelint-config-recommended-vue": "^1.6.1",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-nuxt-rules": "github:Rekwian/stylelint-nuxt-rules",
+    "stylelint-order": "^8.1.1"
   }
 }

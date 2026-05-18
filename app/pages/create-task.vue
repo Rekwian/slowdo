@@ -1,55 +1,64 @@
 <template lang="pug">
 form(@submit.prevent="handleSubmit")
-
-  //- Étape 1 : nom
-  div(v-show="step === 'name'" class="screen")
-    h1 {{ $t('page.createTask.step1.title') }}
-    p(:class="$style.hint") {{ $t('page.createTask.step1.subTitle') }}
-
-    input(
-      name="name"
-      value="test"
-      :placeholder="$t('page.createTask.step1.placeholder')"
-      autocomplete="off"
+  //- Step 1: Name
+  fieldset(v-show="step === 'name'")
+    ui-wrapper(
+      :title="$t('page.createTask.step1.title')"
+      :subtitle="$t('page.createTask.step1.subTitle')"
     )
-    button(@click="step = 'length'" type="button") {{ $t('page.createTask.step1.validationAction') }}
-
-  //- Étape 2 : légère / lourde
-  div(v-show="step === 'length'" class="screen")
-    h1 {{ $t('page.createTask.step1.title') }}
-
-    div(:class="$style.lengthChoices")
-      label(
-        v-for="(label, value) in { weak: $t('page.createTask.step2.choice1'), heavy: $t('page.createTask.step2.choice2') }"
-        :key="value"
-        @click="step = 'deadline'"
-        class="button"
+      input(
+        autocomplete="off"
+        name="name"
+        :placeholder="$t('page.createTask.step1.placeholder')"
       )
-        input(type="radio" name="length" :value="value")
-        span {{ label }}
+      template(#actions)
+        ui-button(@click="step = 'length'" type="button") {{ $t('page.createTask.step1.validationAction') }}
 
-  //- Étape 3 : deadline
-  div(v-show="step === 'deadline'" class="screen")
-    h1 {{ $t('page.createTask.step3.title') }}
+  //- Step 2: Weak / Heavy
+  fieldset(v-show="step === 'length'")
+    ui-wrapper(:title="$t('page.createTask.step2.title')")
+      div(:class="$style.lengthChoices")
+        label(
+          v-for="(label, length) in { weak: $t('page.createTask.step2.choice1'), heavy: $t('page.createTask.step2.choice2') }"
+          :key="length"
+        )
+          input(type="radio" name="length" :value="length" v-model="lengthChoice")
+          ui-button(@click="lengthChoice = length; step = 'deadline'" type="button") {{ label }}
 
-    input(
-      type="date"
-      name="deadline"
-      :value="date"
-    )
-    button(type="submit") {{ $t('page.createTask.step3.validationAction') }}
+  //- Step 3: Deadline
+  fieldset(v-show="step === 'deadline'")
+    ui-wrapper(:title="$t('page.createTask.step3.title')")
+      div(:class="$style.dateWrapper")
+        input(
+          type="date"
+          name="deadline"
+          v-model="deadline"
+        )
+        ui-button(
+          v-if="deadline"
+          type="button"
+          :class="$style.clearBtn"
+          @click="clearDeadline"
+        ) ×
+
+      template(#actions)
+        ui-button(type="submit") {{ deadline ? $t('page.createTask.step3.validationAction') : $t('page.createTask.step3.validationActionNoDate') }}
 </template>
 
 <script setup>
-const emit = defineEmits(['submit'])
+const emit = defineEmits(['submit']);
 
 const step = ref('name');
+const deadline = ref(null);
+const lengthChoice = ref(null);
 
 const { addTask } = useTodo();
 const router = useRouter();
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 
-const date = Temporal.Now.plainDateISO();
+function clearDeadline() {
+  deadline.value = '';
+}
 
 function handleSubmit(value) {
   const formData = new FormData(value.target);
@@ -71,27 +80,44 @@ function handleSubmit(value) {
 </script>
 
 <style module>
-.hint {
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  margin-top: 0.6rem;
-}
-
 .lengthChoices {
   display: flex;
-  gap: 1.25rem;
   flex-wrap: wrap;
+  gap: 1.25rem;
   justify-content: center;
   margin-top: 3rem;
 
-  /* Remove default button margin since we handle it here */
-  :global(.button) {
-    margin-top: 0;
-  }
-
   input {
     display: none;
+  }
+}
+
+.dateWrapper {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  max-width: 580px;
+  width: 100%;
+}
+
+.clearBtn {
+  background: none;
+  border: none;
+  color: var(--color-background-text-muted);
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-style: normal;
+  line-height: 1;
+  margin-top: 0;
+  padding: 0.25rem 0.5rem;
+  transition: var(--transition);
+
+  &:hover,
+  &:focus {
+    background: none;
+    box-shadow: none;
+    color: var(--color-main-hover);
   }
 }
 </style>

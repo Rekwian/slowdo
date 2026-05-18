@@ -2,12 +2,42 @@
   "page": {
     "index": {
       "noTaskWithDone": {
-        "title": "You have already done you daily task",
-        "text": "You can relax peacefully."
+        "title": "You've already completed your daily task",
+        "text": "You can relax and take it easy."
       },
       "noTaskWithoutDone": {
-        "title": "It's calm.",
-        "text": "You can relax peacefully."
+        "title": "It's quiet.",
+        "text": "You can relax and take it easy."
+      },
+      "normalTask": {
+        "title": "Go ahead, take it easy.",
+        "text": "One task at a time",
+        "done": "Done",
+        "reroll": "I'd like to do another task"
+      },
+      "actions": {
+        "canDoAnotherTask": "I feel like doing another task",
+        "addTask": "+ one task",
+        "taskList": "my tasks",
+        "login": "log in"
+      }
+    },
+    "createTask": {
+      "step1": {
+        "title": "What is the goal of this task?",
+        "subTitle": "No pressure, take your time.",
+        "placeholder": "write something…",
+        "validationAction": "Sounds good to me"
+      },
+      "step2": {
+        "title": "How does this task feel?",
+        "choice1": "light ☁️",
+        "choice2": "heavy 🪨"
+      },
+      "step3": {
+        "title": "Is there a deadline?",
+        "validationAction": "Looks good to me",
+        "validationActionNoDate": "no deadline, let's go"
       }
     }
   }

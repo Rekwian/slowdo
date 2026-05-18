@@ -10,12 +10,16 @@
         "text": "Tu peux te détendre tranquillement."
       },
       "normalTask": {
-        "title": "Vas-y.",
-        "text": "Tranquillement"
+        "title": "Vas-y, Tranquillement.",
+        "text": "Une tache à la fois",
+        "done": "C'est fait",
+        "reroll": "Je souhaite faire une autre tache"
       },
       "actions": {
         "canDoAnotherTask": "Je me sens de faire une autre tache",
-        "addTask": "+ une tâche"
+        "addTask": "+ une tâche",
+        "taskList": "mes tâches",
+        "login": "se connecter"
       }
     },
     "createTask": {
@@ -32,7 +36,8 @@
       },
       "step3": {
         "title": "Y a-t-il une échéance ?",
-        "validationAction": "C'est bon pour moi"
+        "validationAction": "C'est bon pour moi",
+        "validationActionNoDate": "pas d'échéance, on y va"
       }
     }
   }
