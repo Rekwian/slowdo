@@ -82,5 +82,13 @@ export default defineNuxtConfig({
     client: {
       installPrompt: true,
     }
+  },
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+      ]
+    }
   }
 })

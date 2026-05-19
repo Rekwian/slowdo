@@ -1,5 +1,5 @@
 <template lang="pug">
-form(@submit.prevent="handleSubmit")
+form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
   //- Step 1: Name
   fieldset(v-show="step === 'name'")
     ui-wrapper(
@@ -10,9 +10,10 @@ form(@submit.prevent="handleSubmit")
         autocomplete="off"
         name="name"
         :placeholder="$t('page.createTask.step1.placeholder')"
+        v-model="name"
       )
       template(#actions)
-        ui-button(@click="step = 'length'" type="button") {{ $t('page.createTask.step1.validationAction') }}
+        ui-button(@click="goToStep('length')" type="button") {{ $t('page.createTask.step1.validationAction') }}
 
   //- Step 2: Weak / Heavy
   fieldset(v-show="step === 'length'")
@@ -23,7 +24,7 @@ form(@submit.prevent="handleSubmit")
           :key="length"
         )
           input(type="radio" name="length" :value="length" v-model="lengthChoice")
-          ui-button(@click="lengthChoice = length; step = 'deadline'" type="button") {{ label }}
+          ui-button(@click="lengthChoice = length; goToStep('deadline')" type="button") {{ label }}
 
   //- Step 3: Deadline
   fieldset(v-show="step === 'deadline'")
@@ -48,35 +49,67 @@ form(@submit.prevent="handleSubmit")
 <script setup>
 const emit = defineEmits(['submit']);
 
+const steps = ['name', 'length', 'deadline'];
 const step = ref('name');
+
+// Form values
+const name = ref(null);
 const deadline = ref(null);
 const lengthChoice = ref(null);
 
 const { addTask } = useTodo();
 const router = useRouter();
+const route = useRoute()
 const localePath = useLocalePath();
 
 function clearDeadline() {
   deadline.value = '';
 }
 
-function handleSubmit(value) {
-  const formData = new FormData(value.target);
-  const date = formData.get('deadline');
-
+function handleSubmit() {
   const task = {
-    name: formData.get('name'),
-    length: formData.get('length'),
+    name: name.value,
+    length: lengthChoice.value,
     done: false,
   }
 
-  if (date) {
-    task.deadline = Temporal.PlainDate.from(date);
+  if (deadline.value) {
+    task.deadline = Temporal.PlainDate.from(deadline.value);
   }
 
   addTask(task);
   router.push(localePath('index'));
 }
+
+function handleEnter(v) {
+  const currentIndex = steps.indexOf(step.value);
+  if (currentIndex < steps.length - 1) {
+    goToStep(steps[currentIndex + 1])
+  }
+
+  if (currentIndex === steps.length - 1) {
+    handleSubmit();
+  }
+}
+
+function goToStep(newStep) {
+  if (newStep && steps.includes(newStep)) {
+    router.push({ query: { step: newStep } })
+  }
+}
+
+onMounted(() => {
+  router.replace({ query: { step: 'name' }})
+})
+
+watch(
+  () => route.query.step,
+  (newStep) => {
+    if (newStep && steps.includes(newStep)) {
+      step.value = newStep
+    }
+  }
+)
 </script>
 
 <style module>
