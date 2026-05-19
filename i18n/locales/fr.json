@@ -31,8 +31,8 @@
       },
       "step2": {
         "title": "Comment tu la sens, cette tâche ?",
-        "choice1": "légère ☁️",
-        "choice2": "lourde 🪨"
+        "light": "légère ☁️",
+        "heavy": "lourde 🪨"
       },
       "step3": {
         "title": "Y a-t-il une échéance ?",

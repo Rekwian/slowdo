@@ -4,7 +4,6 @@ export const newTask = {
   deadline: null,
   done: false,
   selected: false,
-  trucmuch: false,
 }
 
 function convertToTemporal(date) {

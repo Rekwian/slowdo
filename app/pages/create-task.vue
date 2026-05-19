@@ -15,12 +15,12 @@ form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
       template(#actions)
         ui-button(@click="goToStep('length')" type="button") {{ $t('page.createTask.step1.validationAction') }}
 
-  //- Step 2: Weak / Heavy
+  //- Step 2: light / Heavy
   fieldset(v-show="step === 'length'")
     ui-wrapper(:title="$t('page.createTask.step2.title')")
       div(:class="$style.lengthChoices")
         label(
-          v-for="(label, length) in { weak: $t('page.createTask.step2.choice1'), heavy: $t('page.createTask.step2.choice2') }"
+          v-for="(label, length) in { light: $t('page.createTask.step2.light'), heavy: $t('page.createTask.step2.heavy') }"
           :key="length"
         )
           input(type="radio" name="length" :value="length" v-model="lengthChoice")

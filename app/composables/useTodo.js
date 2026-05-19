@@ -1,13 +1,13 @@
-import { normalize, deNormalize } from '@/entity/tasks'
+import { normalize, deNormalize } from '@/entity/tasks';
 
 export default () => {
   const idb = useIdb();
-  const tasks = useState('todo', () => [])
+  const tasks = useState('todo', () => []);
 
-  const toDoTasks = computed(() => tasks.value.filter((task) => !task.done));
-  const todayDoneTasks = computed(
-    () => tasks.value.filter((task) => task.done && Temporal.PlainDate.compare(task.done, Temporal.Now.plainDateISO()) === 0)
-  )
+  const nextTasks = computed(() => tasks.value.filter((task) => !task.done || Temporal.PlainDate.compare(task.done, Temporal.Now.plainDateISO()) !== -1));
+  const toDoTasks = computed(() => nextTasks.value.filter((task) => !task.done));
+  const oldTasks = computed(() => tasks.value.filter((task) => task.done && Temporal.PlainDate.compare(task.done, Temporal.Now.plainDateISO()) === -1));
+  const todayDoneTasks = computed(() => nextTasks.value.filter((task) => task.done && Temporal.PlainDate.compare(task.done, Temporal.Now.plainDateISO()) === 0))
 
   const currentTask = computed(() => tasks.value.filter((task) => {
     if (task.selected && !task.done) {
@@ -24,14 +24,12 @@ export default () => {
     }
 
     return Temporal.PlainDateTime.compare(current.selected, previous.selected) > 0 ? current : previous
-  }, null))
+  }, null));
 
   async function getTasks() {
     const idbTasks = await idb.getAll();
 
-    tasks.value = idbTasks
-      .map(normalize)
-      .filter((task) => !task.done || Temporal.PlainDate.compare(task.done, Temporal.Now.plainDateISO()) != -1);
+    tasks.value = idbTasks.map(normalize);
   }
 
   async function addTask(value) {
@@ -53,15 +51,15 @@ export default () => {
 
   function taskRolling(taskList) {
     const deadLineTask = taskList.filter((task) => !task.done && task.deadline);
-    const weakTask = taskList.filter((task) => !task.done && task.length === 'weak');
+    const lightTask = taskList.filter((task) => !task.done && task.length === 'light');
     const heavyTask = taskList.filter((task) => !task.done && task.length === 'heavy');
 
     if (deadLineTask.length) {
       return deadLineTask[Math.floor(Math.random() * deadLineTask.length)];
     }
 
-    if (weakTask.length) {
-      return weakTask[Math.floor(Math.random() * weakTask.length)];
+    if (lightTask.length) {
+      return lightTask[Math.floor(Math.random() * lightTask.length)];
     }
 
     if (heavyTask.length) {
@@ -77,7 +75,7 @@ export default () => {
     const now = Temporal.Now.plainDateTimeISO();
     
     if (!currentTask.value) {
-      const task = taskRolling(tasks.value);
+      const task = taskRolling(nextTasks.value);
 
       if (task) {
         task.selected = now;
@@ -85,10 +83,10 @@ export default () => {
       }
     }
   }
-
+  
   async function resetSelectedTasks() {
-    for (const key in tasks.value) {
-      const task = tasks.value[key]
+    for (const key in nextTasks.value) {
+      const task = nextTasks.value[key]
       task.selected = null;
 
       await updateTask(task);
@@ -98,15 +96,15 @@ export default () => {
   async function switchTask() {
     const nowDateTime = Temporal.Now.plainDateTimeISO();
 
-    let nextTasks = tasks.value.filter((task) => !task.selected && !task.done)
+    let notSelectedNextTasks = nextTasks.value.filter((task) => !task.selected && !task.done)
 
-    if (!nextTasks.length) {
+    if (!notSelectedNextTasks.length) {
       await resetSelectedTasks()
 
       return selectTask();
     }
 
-    const nextTask = taskRolling(nextTasks);
+    const nextTask = taskRolling(notSelectedNextTasks);
     if (nextTask) {
       nextTask.selected = nowDateTime;
       await updateTask(nextTask);
@@ -117,12 +115,14 @@ export default () => {
     addTask,
     currentTask,
     getTasks,
-    toDoTasks,
+    nextTasks,
+    oldTasks,
     resetSelectedTasks,
     selectTask,
     switchTask,
     tasks,
     todayDoneTasks,
+    toDoTasks,
     updateTask,
   }
 }

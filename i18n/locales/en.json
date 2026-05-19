@@ -31,8 +31,8 @@
       },
       "step2": {
         "title": "How does this task feel?",
-        "choice1": "light ☁️",
-        "choice2": "heavy 🪨"
+        "light": "light ☁️",
+        "heavy": "heavy 🪨"
       },
       "step3": {
         "title": "Is there a deadline?",

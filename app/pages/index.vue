@@ -28,9 +28,9 @@ ui-button(
   :to="$localePath('create-task')"
 ) {{ $t('page.index.actions.addTask') }}
 
-nav(v-if="false" :class="$style.cornerNav")
-  nuxt-link(:class="$style.ghostLink" :to="$localePath('tasks')") {{ $t('page.index.actions.taskList') }}
-  nuxt-link(:class="$style.ghostLink" :to="$localePath('login')") {{ $t('page.index.actions.login') }}
+nav(:class="$style.cornerNav")
+  nuxt-link(:class="$style.ghostLink" :to="$localePath('task-list')") {{ $t('page.index.actions.taskList') }}
+  nuxt-link(v-if="false" :class="$style.ghostLink" :to="$localePath('login')") {{ $t('page.index.actions.login') }}
 </template>
 
 <script setup>
