@@ -23,10 +23,7 @@ template(v-if="currentTask")
         ui-button(@click="checkTask") {{ $t('page.index.normalTask.done') }}
         button(:class="$style.ghostLink" @click="switchTask") {{ $t('page.index.normalTask.reroll') }}
 
-ui-button(
-  :class="$style.addFab"
-  :to="$localePath('create-task')"
-) {{ $t('page.index.actions.addTask') }}
+ui-fab-add-task
 
 nav(:class="$style.cornerNav")
   nuxt-link(:class="$style.ghostLink" :to="$localePath('task-list')") {{ $t('page.index.actions.taskList') }}
@@ -75,13 +72,6 @@ onMounted(async () => {
 </script>
 
 <style module>
-.addFab {
-  bottom: 2.5rem;
-  margin-top: 0;
-  position: fixed;
-  right: 2.5rem;
-}
-
 .cornerNav {
   align-items: center;
   display: flex;

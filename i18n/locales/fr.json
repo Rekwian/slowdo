@@ -39,6 +39,16 @@
         "validationAction": "C'est bon pour moi",
         "validationActionNoDate": "pas d'échéance, on y va"
       }
+    },
+    "tasks": {
+      "pending": "en cours",
+      "done": "terminées",
+      "clearAll": "tout supprimer",
+      "empty": "aucune tâche pour l'instant",
+      "markDone": "marquer comme terminée",
+      "markUndone": "remettre en cours",
+      "remove": "supprimer",
+      "back": "retour"
     }
   }
 }

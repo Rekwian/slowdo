@@ -39,6 +39,16 @@
         "validationAction": "Looks good to me",
         "validationActionNoDate": "no deadline, let's go"
       }
+    },
+    "tasks": {
+      "pending": "pending",
+      "done": "completed",
+      "clearAll": "clear all",
+      "empty": "no tasks yet",
+      "markDone": "mark as completed",
+      "markUndone": "mark as pending",
+      "remove": "remove",
+      "back": "back"
     }
   }
 }

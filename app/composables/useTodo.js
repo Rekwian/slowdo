@@ -49,6 +49,16 @@ export default () => {
     Object.assign(storeTask, task);
   }
 
+  async function removeTask(task) {
+    if (!task) {
+      return;
+    }
+
+    await idb.remove(task.id);
+    const index = tasks.value.findIndex((item) => item.id === task.id);
+    tasks.value.splice(index, 1);
+  }
+
   function taskRolling(taskList) {
     const deadLineTask = taskList.filter((task) => !task.done && task.deadline);
     const lightTask = taskList.filter((task) => !task.done && task.length === 'light');
@@ -117,6 +127,7 @@ export default () => {
     getTasks,
     nextTasks,
     oldTasks,
+    removeTask,
     resetSelectedTasks,
     selectTask,
     switchTask,
