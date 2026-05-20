@@ -54,6 +54,7 @@ onMounted(async () => {
   border: 1px solid var(--color-surface);
   border-radius: var(--radius-soft);
   display: flex;
+  gap: 2rem;
   padding: 1rem;
 }
 .info {
