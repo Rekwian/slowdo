@@ -7,8 +7,8 @@ div(:class="$style.wrapper")
         div(:class="$style.info")
           p(:class="$style.taskName") {{ task.name }}
           ul(:class="$style.meta")
-            li {{ $t(`page.createTask.step2.${task.length}`) }}
-            li {{ $d(new Date(task.deadline.toString()), 'short') }}
+            li(v-if="task.length") {{ $t(`page.createTask.step2.${task.length}`) }}
+            li(v-if="task.deadline") {{ $d(new Date(task.deadline.toString()), 'short') }}
         div(:class="$style.actions")
           button
             icons-trash
