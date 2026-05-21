@@ -1,6 +1,6 @@
 <template lang="pug">
 component(
-  :class="$style.button"
+  :class="[$style.button, variant]"
   :is="is"
   :to="to"
   v-bind="$attrs"
@@ -10,8 +10,12 @@ component(
 
 <script setup>
 const props = defineProps({
-  to: { default: undefined, type: [Object, String]}
+  to: { default: undefined, type: [Object, String] },
+  variant: { default: 'normal', type: String },
 })
+
+const css = useCssModule();
+
 const is = computed(() => {
   if (props.to) {
     return resolveComponent('nuxt-link')
@@ -19,21 +23,19 @@ const is = computed(() => {
 
   return 'button';
 })
+
+const variant = css[props.variant] ?? css.normal
 </script>
 
 
 <style module>
 .button {
   appearance: none;
-  background-color: transparent;
-  border: 1.5px solid var(--color-main);
   border-radius: var(--radius-pill);
-  color: var(--color-background-text);
   cursor: pointer;
   display: inline-block;
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
-  font-style: italic;
   font-weight: 300;
   letter-spacing: 0.04em;
   padding: 0.75rem 2rem;
@@ -43,11 +45,35 @@ const is = computed(() => {
 
   &:hover,
   &:focus {
+    outline: none;
+  }
+}
+
+.normal {
+  background-color: var(--color-background);
+  border: 1.5px solid var(--color-main);
+  color: var(--color-background-text);
+  font-style: italic;
+
+  &:hover,
+  &:focus {
     background-color: var(--color-main-glow);
     border-color: var(--color-main-hover);
     box-shadow: 0 0 18px var(--color-main-glow);
     color: var(--color-main-hover);
-    outline: none;
+  }
+}
+
+.flat {
+  background-color: var(--color-background);
+  border: 1.5px solid var(--color-background);
+  color: var(--color-background-text-muted);
+  font-style: italic;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-background-hover);
+    border-color: var(--color-background-hover);
   }
 }
 </style>

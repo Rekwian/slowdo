@@ -1,13 +1,17 @@
 <template lang="pug">
 div(:class="$style.wrapper")
-  nuxt-link(:class="[$style.back, 'button']" :to="$localePath('index')") ← {{ $t('page.tasks.back') }}
+  ui-button(
+    :class="[$style.back, 'button']"
+    :to="$localePath('index')"
+    variant="flat"
+  ) ← {{ $t('page.tasks.back') }}
 
   //- in Progress
   section(v-if="pendingTasks.length" :class="$style.section")
     h2(:class="$style.title") {{ $t('page.tasks.pending') }}
     ul(:class="$style.list")
-      li(v-for="task in pendingTasks" :key="task.id")
-        ui-task-card(:task="task")
+      li(v-for="item in pendingTasks" :key="item.id")
+        ui-task-card(:task="item")
 
   //- done
   section(v-if="doneTasks.length" :class="$style.section")
@@ -19,11 +23,11 @@ div(:class="$style.wrapper")
       div(v-if="doneOpen")
         button(:class="$style.clearAll" @click="removeAllDone") {{ $t('page.tasks.clearAll') }}
         ul(:class="$style.list")
-          li(v-for="task in doneTasks" :key="task.id")
-            ui-task-card(:task="task")
+          li(v-for="item in doneTasks" :key="item.id")
+            ui-task-card(:task="item")
 
   p(v-if="!tasks.length" :class="$style.empty") {{ $t('page.tasks.empty') }}
-  ui-fab-add-task
+  ui-fab-add-task(:class="$style.fabAction")
 </template>
 
 <script setup>
@@ -46,7 +50,7 @@ onMounted(async () => {
 <style module>
 .wrapper {
   max-width: 600px;
-  padding: 4rem 1.5rem;
+  padding-bottom: 3rem;
   width: 100%;
 }
 

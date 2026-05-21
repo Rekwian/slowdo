@@ -7,9 +7,9 @@ ui-button(
 
 <style module>
 .addFab {
-  bottom: 2.5rem;
+  bottom: 1rem;
   margin-top: 0;
   position: fixed;
-  right: 2.5rem;
+  right: 1rem;
 }
 </style>

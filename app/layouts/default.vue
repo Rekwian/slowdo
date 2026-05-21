@@ -25,7 +25,7 @@ watch(currentLocale, (code) => {
   flex-direction: column;
   justify-content: center;
   min-height: 100dvh;
-  padding: 2rem;
+  padding: 1rem;
   width: 100vw;
 }
 
@@ -36,7 +36,7 @@ watch(currentLocale, (code) => {
   color: var(--color-background-text);
   left: 1rem;
   opacity: 0.5;
-  position: absolute;
+  position: fixed;
   z-index: 100;
 
   option {

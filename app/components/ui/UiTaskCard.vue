@@ -62,6 +62,7 @@ function toggleTask(task) {
   box-sizing: border-box;
   color: var(--color-surface);
   cursor: pointer;
+  flex-shrink: 0;
   font-size: 0.5rem;
   height: 30px;
   padding: 0.25rem;
@@ -110,6 +111,7 @@ function toggleTask(task) {
   color: var(--color-background-text);
   cursor: pointer;
   display: flex;
+  flex-shrink: 0;
   height: 40px;
   justify-content: center;
   margin-top: 0;

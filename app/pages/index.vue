@@ -21,7 +21,7 @@ template(v-if="currentTask")
     template(#actions)
       div(:class="$style.actions")
         ui-button(@click="checkTask") {{ $t('page.index.normalTask.done') }}
-        button(:class="$style.ghostLink" @click="switchTask") {{ $t('page.index.normalTask.reroll') }}
+        ui-button(variant="flat" @click="switchTask") {{ $t('page.index.normalTask.reroll') }}
 
 ui-fab-add-task
 
