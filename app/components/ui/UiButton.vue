@@ -51,16 +51,15 @@ const variant = css[props.variant] ?? css.normal
 
 .normal {
   background-color: var(--color-background);
-  border: 1.5px solid var(--color-main);
+  border: 1.5px solid var(--color-primary);
   color: var(--color-background-text);
   font-style: italic;
 
   &:hover,
   &:focus {
-    background-color: var(--color-main-glow);
-    border-color: var(--color-main-hover);
-    box-shadow: 0 0 18px var(--color-main-glow);
-    color: var(--color-main-hover);
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    color: var(--color-primary-hover-text);
   }
 }
 
@@ -69,6 +68,8 @@ const variant = css[props.variant] ?? css.normal
   border: 1.5px solid var(--color-background);
   color: var(--color-background-text-muted);
   font-style: italic;
+  text-decoration: underline;
+  text-decoration-color: hsl(from var(--color-background-text-muted) h s 40%);
 
   &:hover,
   &:focus {

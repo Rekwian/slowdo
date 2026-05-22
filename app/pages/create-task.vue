@@ -34,6 +34,7 @@ form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
           type="date"
           name="deadline"
           v-model="deadline"
+          placeholder="DD/MM/YYYY"
         )
         ui-button(
           v-if="deadline"
@@ -150,7 +151,7 @@ watch(
   &:focus {
     background: none;
     box-shadow: none;
-    color: var(--color-main-hover);
+    color: var(--color-primary-hover);
   }
 }
 </style>

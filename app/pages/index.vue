@@ -10,7 +10,7 @@ template(v-if="!currentTask && toDoTasks?.length")
     :title="noTaskText.title"
     :subtitle="noTaskText.text"
   )
-    ui-button(v-if="toDoTasks.length" @click="() => selectTask(true)") {{ $t('page.index.actions.canDoAnotherTask') }}
+    ui-button(variant="flat" v-if="toDoTasks.length" @click="() => selectTask(true)") {{ $t('page.index.actions.canDoAnotherTask') }}
 
 template(v-if="currentTask")
   ui-wrapper(
@@ -97,9 +97,9 @@ onMounted(async () => {
 
   &:hover,
   &:focus {
-    color: var(--color-main-hover);
+    color: var(--color-primary-hover);
     text-decoration: underline;
-    text-decoration-color: var(--color-main);
+    text-decoration-color: var(--color-primary);
     text-decoration-thickness: 1px;
   }
 }

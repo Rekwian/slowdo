@@ -31,7 +31,7 @@ function toggleTask(task) {
 <style module>
 .task {
   align-items: center;
-  border: 1px solid var(--color-surface);
+  border: 1px solid var(--color-primary);
   border-radius: var(--radius-soft);
   display: flex;
   gap: 1rem;
@@ -57,10 +57,10 @@ function toggleTask(task) {
 
 .checkAction {
   background-color: var(--background-color);
-  border: 2px solid var(--color-surface);
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
   box-sizing: border-box;
-  color: var(--color-surface);
+  color: var(--color-primary);
   cursor: pointer;
   flex-shrink: 0;
   font-size: 0.5rem;
@@ -72,7 +72,7 @@ function toggleTask(task) {
   &:hover,
   &:focus {
     background: none;
-    border-color: var(--color-main);
+    border-color: var(--color-primary);
     box-shadow: none;
     color: var(--color-accent);
   }
@@ -105,7 +105,7 @@ function toggleTask(task) {
 .removeAction {
   align-items: center;
   background-color: var(--background-color);
-  border: 2px solid var(--color-surface);
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
   box-sizing: border-box;
   color: var(--color-background-text);
