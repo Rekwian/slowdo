@@ -1,6 +1,11 @@
 <template lang="pug">
 form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
   //- Step 1: Name
+  ui-button(
+    :class="[$style.back, 'button']"
+    :to="$localePath('index')"
+    variant="flat"
+  ) ← {{ $t('page.tasks.back') }}
   fieldset(v-show="step === 'name'")
     ui-wrapper(
       :title="$t('page.createTask.step1.title')"
