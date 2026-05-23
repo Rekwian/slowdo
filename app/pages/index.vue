@@ -26,8 +26,8 @@ template(v-if="currentTask")
 ui-fab-add-task
 
 nav(:class="$style.cornerNav")
-  nuxt-link(:class="$style.ghostLink" :to="$localePath('task-list')") {{ $t('page.index.actions.taskList') }}
-  nuxt-link(v-if="false" :class="$style.ghostLink" :to="$localePath('login')") {{ $t('page.index.actions.login') }}
+  ui-button(variant="flat" :class="$style.ghostLink" :to="$localePath('task-list')") {{ $t('page.index.actions.taskList') }}
+  ui-button(variant="flat" v-if="false" :class="$style.ghostLink" :to="$localePath('login')") {{ $t('page.index.actions.login') }}
 </template>
 
 <script setup>
@@ -79,29 +79,6 @@ onMounted(async () => {
   position: fixed;
   right: 1.25rem;
   top: 1.25rem;
-}
-
-.ghostLink {
-  align-items: center;
-  background-color: transparent;
-  border: 0;
-  color: var(--color-background-text-muted);
-  cursor: pointer;
-  display: flex;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
-  font-style: italic;
-  letter-spacing: 0.03em;
-  min-height: 44px; /* touch target minimum recommandé */
-  text-decoration: none;
-  transition: color var(--transition);
-
-  &:hover,
-  &:focus {
-    color: var(--color-primary-hover);
-    text-decoration: underline;
-    text-decoration-color: var(--color-primary);
-    text-decoration-thickness: 1px;
-  }
 }
 
 .taskCheckbox {
