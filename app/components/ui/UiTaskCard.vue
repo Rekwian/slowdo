@@ -14,6 +14,7 @@ div(:class="{[$style.task]: true, [$style.taskDone]: task.done }")
 </template>
 
 <script setup>
+import { Temporal } from '@js-temporal/polyfill';
 const props = defineProps({
   task: { required: true, type: Object }
 })

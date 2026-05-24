@@ -53,6 +53,8 @@ form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
 </template>
 
 <script setup>
+import { Temporal } from '@js-temporal/polyfill';
+
 const emit = defineEmits(['submit']);
 
 const steps = ['name', 'length', 'deadline'];

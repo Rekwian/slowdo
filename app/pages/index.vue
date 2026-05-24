@@ -31,6 +31,8 @@ nav(:class="$style.cornerNav")
 </template>
 
 <script setup>
+import { Temporal } from '@js-temporal/polyfill';
+
 const { t } = useI18n();
 const {
   currentTask,
