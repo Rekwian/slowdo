@@ -1,5 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      link: [
+        {
+          rel: "manifest",
+          href: "/manifest.webmanifest"
+        }
+      ]
+    }
+  },
   css: ["reset-css", "assets/css/default.css"],
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -35,19 +45,23 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
+    client: {
+      installPrompt: true,
+    },
     pwaAssets: {
       // https://vite-pwa-org.netlify.app/assets-generator/integrations.html
       disabled: false,
     },
+    injectManifest: false,
     registerType: "autoUpdate",
     manifest: {
       name: "Slowdo",
       start_url: '/app',
-      short_name:
-        "Anti-productive application that allows you to complete the task without overloading your mind. Do it at your own pace.",
+      id: '/app',
+      short_name: "Slow todo list",
       theme_color: "#4a8a96",
       background_color: "#4a8a96",
-      description: "Slow todo list",
+      description: "Anti-productive application that allows you to complete the task without overloading your mind. Do it at your own pace.",
       screenshots: [
         {
           src: "/screenshots/desktop.png",
@@ -64,9 +78,9 @@ export default defineNuxtConfig({
         },
       ],
     },
-    devOptions: {
-      enabled: true,
-    },
+    // devOptions: {
+    //   enabled: true,
+    // },
   },
   vite: {
     optimizeDeps: {
