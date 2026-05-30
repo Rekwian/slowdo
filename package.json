@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@js-temporal/polyfill": "^0.5.1",
-    "@nuxt/content": "^3.14.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^10.3.0",
     "@vite-pwa/nuxt": "^1.1.1",

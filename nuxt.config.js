@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts", // https://google-fonts.nuxtjs.org
     "@nuxtjs/i18n", // https://i18n.nuxtjs.org
     "@vite-pwa/nuxt", // https://vite-pwa-org.netlify.app
-    "@nuxt/content", // https://content.nuxt.com
   ],
   i18n: {
     defaultLocale: "en",
