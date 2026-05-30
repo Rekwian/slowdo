@@ -1,6 +1,5 @@
 <template lang="pug">
-  nuxt-pwa-manifest
+  nuxt-pwa-assets
   nuxt-loading-indicator
-  nuxt-layout
-    nuxt-page
+  nuxt-page
 </template>

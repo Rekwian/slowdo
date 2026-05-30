@@ -1,55 +1,56 @@
 <template lang="pug">
-form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
-  //- Step 1: Name
-  ui-button(
-    :class="[$style.back, 'button']"
-    :to="$localePath('index')"
-    variant="flat"
-  ) ← {{ $t('page.tasks.back') }}
-  fieldset(v-show="step === 'name'")
-    ui-wrapper(
-      :title="$t('page.createTask.step1.title')"
-      :subtitle="$t('page.createTask.step1.subTitle')"
-    )
-      input(
-        autocomplete="off"
-        name="name"
-        :placeholder="$t('page.createTask.step1.placeholder')"
-        v-model="name"
+nuxt-layout
+  form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
+    //- Step 1: Name
+    ui-button(
+      :class="[$style.back, 'button']"
+      :to="$localePath('app')"
+      variant="flat"
+    ) ← {{ $t('page.tasks.back') }}
+    fieldset(v-show="step === 'name'")
+      ui-wrapper(
+        :title="$t('page.createTask.step1.title')"
+        :subtitle="$t('page.createTask.step1.subTitle')"
       )
-      template(#actions)
-        ui-button(@click="goToStep('length')" type="button") {{ $t('page.createTask.step1.validationAction') }}
-
-  //- Step 2: light / Heavy
-  fieldset(v-show="step === 'length'")
-    ui-wrapper(:title="$t('page.createTask.step2.title')")
-      div(:class="$style.lengthChoices")
-        label(
-          v-for="(label, length) in { light: $t('page.createTask.step2.light'), heavy: $t('page.createTask.step2.heavy') }"
-          :key="length"
-        )
-          input(type="radio" name="length" :value="length" v-model="lengthChoice")
-          ui-button(@click="lengthChoice = length; goToStep('deadline')" type="button") {{ label }}
-
-  //- Step 3: Deadline
-  fieldset(v-show="step === 'deadline'")
-    ui-wrapper(:title="$t('page.createTask.step3.title')")
-      div(:class="$style.dateWrapper")
         input(
-          type="date"
-          name="deadline"
-          v-model="deadline"
-          placeholder="DD/MM/YYYY"
+          autocomplete="off"
+          name="name"
+          :placeholder="$t('page.createTask.step1.placeholder')"
+          v-model="name"
         )
-        ui-button(
-          v-if="deadline"
-          type="button"
-          :class="$style.clearBtn"
-          @click="clearDeadline"
-        ) ×
+        template(#actions)
+          ui-button(@click="goToStep('length')" type="button") {{ $t('page.createTask.step1.validationAction') }}
 
-      template(#actions)
-        ui-button(type="submit") {{ deadline ? $t('page.createTask.step3.validationAction') : $t('page.createTask.step3.validationActionNoDate') }}
+    //- Step 2: light / Heavy
+    fieldset(v-show="step === 'length'")
+      ui-wrapper(:title="$t('page.createTask.step2.title')")
+        div(:class="$style.lengthChoices")
+          label(
+            v-for="(label, length) in { light: $t('page.createTask.step2.light'), heavy: $t('page.createTask.step2.heavy') }"
+            :key="length"
+          )
+            input(type="radio" name="length" :value="length" v-model="lengthChoice")
+            ui-button(@click="lengthChoice = length; goToStep('deadline')" type="button") {{ label }}
+
+    //- Step 3: Deadline
+    fieldset(v-show="step === 'deadline'")
+      ui-wrapper(:title="$t('page.createTask.step3.title')")
+        div(:class="$style.dateWrapper")
+          input(
+            type="date"
+            name="deadline"
+            v-model="deadline"
+            placeholder="DD/MM/YYYY"
+          )
+          ui-button(
+            v-if="deadline"
+            type="button"
+            :class="$style.clearBtn"
+            @click="clearDeadline"
+          ) ×
+
+        template(#actions)
+          ui-button(type="submit") {{ deadline ? $t('page.createTask.step3.validationAction') : $t('page.createTask.step3.validationActionNoDate') }}
 </template>
 
 <script setup>

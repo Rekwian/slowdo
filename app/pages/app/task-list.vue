@@ -2,7 +2,7 @@
 div(:class="$style.wrapper")
   ui-button(
     :class="[$style.back, 'button']"
-    :to="$localePath('index')"
+    :to="$localePath('app-index')"
     variant="flat"
   ) ← {{ $t('page.tasks.back') }}
 
