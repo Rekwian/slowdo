@@ -50,5 +50,13 @@
       "remove": "supprimer",
       "back": "retour à ma tache"
     }
+  },
+  "layout": {
+    "nav": {
+      "todayTask": "Ma tache du jour",
+      "taskList": "Accéder à ma liste des taches",
+      "menu": "Menu",
+      "howToInstall": "Comment installer l'application sur mon périphérique"
+    }
   }
 }

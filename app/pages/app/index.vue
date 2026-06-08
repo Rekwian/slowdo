@@ -1,41 +1,40 @@
-<template lang="pug">
-nuxt-layout
-  template(v-if="!currentTask && !toDoTasks?.length")
-    ui-wrapper(
-      :title="noTaskText.title"
-      :subtitle="noTaskText.text"
-    )
+<template>
+  <nuxt-layout>
+    <template v-if="!currentTask &amp;&amp; !toDoTasks?.length">
+      <ui-wrapper :title="noTaskText.title" :subtitle="noTaskText.text" />
+    </template>
 
-  template(v-if="!currentTask && toDoTasks?.length")
-    ui-wrapper(
-      :title="noTaskText.title"
-      :subtitle="noTaskText.text"
-    )
-      ui-button(variant="flat" v-if="toDoTasks.length" @click="() => selectTask(true)") {{ $t('page.index.actions.canDoAnotherTask') }}
+    <template v-if="!currentTask &amp;&amp; !!toDoTasks?.length">
+      <ui-wrapper :title="noTaskText.title" :subtitle="noTaskText.text">
+        <template #actions>
+          <ui-button variant="flat" v-if="toDoTasks.length > 1" @click="() => selectTask(true)">{{ $t('page.index.actions.canDoAnotherTask') }}</ui-button>
+        </template>
+      </ui-wrapper>
+    </template>
 
-  template(v-if="currentTask")
-    ui-wrapper(
-      :title="$t('page.index.normalTask.title')"
-      :subtitle="$t('page.index.normalTask.text')"
-    )
-      p(:class="$style.taskName") {{ currentTask.name }}
-      template(#actions)
-        div(:class="$style.actions")
-          ui-button(@click="checkTask") {{ $t('page.index.normalTask.done') }}
-          ui-button(variant="flat" @click="switchTask") {{ $t('page.index.normalTask.reroll') }}
+    <template v-if="currentTask">
+      <ui-wrapper :title="$t('page.index.normalTask.title')" :subtitle="$t('page.index.normalTask.text')">
+        <p :class="$style.taskName">{{ currentTask!.name }}</p>
+        <template #actions>
+          <div :class="$style.actions">
+            <ui-button @click="checkTask">{{ $t('page.index.normalTask.done') }}</ui-button>
 
-  //- ui-fab-add-task
+            <ui-button variant="link" v-if="toDoTasks.length > 1" @click="switchTask">{{ $t('page.index.normalTask.reroll') }}</ui-button>
+          </div>
+        </template>
+      </ui-wrapper>
+    </template>
 
-
-
-  template(#actions)
-    ui-button(:to="$localePath('app-create-task')") {{ $t('page.index.actions.addTask') }}
-//- nav(:class="$style.cornerNav")
-//-   ui-button(variant="flat" :class="$style.ghostLink" :to="$localePath('task-list')") {{ $t('page.index.actions.taskList') }}
-//-   ui-button(variant="flat" v-if="false" :class="$style.ghostLink" :to="$localePath('login')") {{ $t('page.index.actions.login') }}
+    <template #actions>
+      <ui-button variant="link" :to="$localePath('app-create-task')">{{ $t('page.index.actions.addTask') }}</ui-button>
+      <!-- <ui-button variant="flat" :class="$style.ghostLink" :to="$localePath('task-list')">{{ $t('page.index.actions.taskList') }}</ui-button>
+      <ui-button variant="flat" v-if="false" :class="$style.ghostLink" :to="$localePath('login')">{{ $t('page.index.actions.login') }}</ui-button> -->
+    </template>
+  </nuxt-layout>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { Task } from '@/entity/tasks';
 import { Temporal } from '@js-temporal/polyfill';
 
 const { t } = useI18n();
@@ -51,10 +50,15 @@ const {
 } = useTodo();
 
 async function checkTask() {
-  await updateTask({
+  if (!currentTask.value) {
+    return null;
+  }
+  const task: Task = {
     ...currentTask.value,
-    done: Temporal.Now.plainDateTimeISO()
-  });
+    done: Temporal.Now.plainDateTimeISO(),
+  }
+
+  await updateTask(task);
   await resetSelectedTasks();
 }
 

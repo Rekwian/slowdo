@@ -1,20 +1,55 @@
-<template lang="pug">
-div(:class="$style.layout")
-  header(:class="$style.header")
-    ui-button(variant="link" :to="$localePath('app-navigation')") menu
-  main(:class="$style.main")
-    slot
-  footer(:class="$style.footer")
-    select(:class="$style.localSelect" v-model="currentLocale")
-      option(v-for="{code} in locales" :key="code" :value="code") {{ code }}
-    slot(name="actions")
+<template>
+  <div :class="$style.layout">
+    <header :class="$style.header">
+      <ui-modal ref="menuDialog" id="menu-dialog">
+        <ul :class="$style.nav">
+          <li>
+            <ui-button variant="link" @click="":to="$localePath('app')">
+              {{ $t('layout.nav.todayTask') }}
+            </ui-button>
+          </li>
+          <li>
+            <ui-button variant="link" @click="":to="$localePath('app-task-list')">
+              {{ $t('layout.nav.taskList')}}
+            </ui-button>
+          </li>
+          <li>
+            <ui-button variant="link" :to="$localePath('how-to-install')">{{ $t('layout.nav.howToInstall')}}
+            </ui-button>
+          </li>
+        </ul>
+      </ui-modal>
+      <ui-button variant="link" @click="showModal">{{ $t('layout.nav.menu')}}</ui-button>
+    </header>
+    <main :class="$style.main">
+      <slot></slot>
+    </main>
+    <footer :class="$style.footer">
+      <slot name="actions"></slot>
+    </footer>
+  </div>
 </template>
 
-<script setup>
-const { locales, setLocale, locale } = useI18n();
+<script setup lang="ts">
+import UiModal from '@/components/ui/UiModal.vue';
+
+type ModalType = InstanceType<typeof UiModal>
+
+const { setLocale, locale } = useI18n();
 const currentLocale = ref(locale.value);
 
+
+const menuDialog = useTemplateRef<ModalType>('menuDialog');
+
+function showModal() {
+  menuDialog.value?.showModal()
+}
+
 watch(currentLocale, setLocale);
+
+onUnmounted(() => {
+  menuDialog.value?.closeModal();
+})
 </script>
 
 <style module>
@@ -65,6 +100,21 @@ watch(currentLocale, setLocale);
 
   option {
     color: var(--color-background-text);
+  }
+}
+
+.nav {
+  background-color: hsla(0 0% 100% / 0.4);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  a {
+    color: var(--color-primary-text);
+    text-decoration: none;
   }
 }
 </style>

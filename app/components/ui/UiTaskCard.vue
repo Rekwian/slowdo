@@ -1,30 +1,40 @@
-<template lang="pug">
-div(:class="{[$style.task]: true, [$style.taskDone]: task.done }")
-  div(:class="$style.info")
-    div(:class="$style.head")
-      button(:class="$style.checkAction" @click="() => toggleTask(task)" :aria-label="$t('page.tasks.markDone')")
-        icons-check(v-if="task.done")
-      p(:class="$style.taskName") {{ task.name }}
-    ul(:class="$style.meta")
-      li(v-if="task.length") {{ $t(`page.createTask.step2.${task.length}`) }}
-      li(v-if="task.deadline") {{ $d(new Date(task.deadline.toString()), 'short') }}
-  div(:class="$style.actions")
-    button(:class="$style.removeAction" @click="() => removeTask(task)" :aria-label="$t('page.tasks.remove')")
-      icons-trash
+<template>
+  <div :class="{[$style.task]: true, [$style.taskDone]: task.done }">
+    <div :class="$style.info">
+      <div :class="$style.head">
+        <button :class="$style.checkAction" @click="() => toggleTask(task)" :aria-label="$t('page.tasks.markDone')">
+          <icons-check v-if="task.done" />
+        </button>
+
+        <p :class="$style.taskName">{{ task.name }}</p>
+      </div>
+
+      <ul :class="$style.meta">
+        <li v-if="task.length">{{ $t(`page.createTask.step2.${task.length}`) }}</li>
+        <li v-if="task.deadline">{{ $d(new Date(task.deadline!.toString()), 'short') }}</li>
+      </ul>
+    </div>
+
+    <div :class="$style.actions">
+      <button :class="$style.removeAction" @click="() => removeTask(task)" :aria-label="$t('page.tasks.remove')">
+        <icons-trash />
+      </button>
+    </div>
+  </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { Task } from '@/entity/tasks';
 import { Temporal } from '@js-temporal/polyfill';
-const props = defineProps({
-  task: { required: true, type: Object }
-})
+
+const { task } = defineProps<{ task: Task }>()
 
 const { removeTask, updateTask } = useTodo();
 
-function toggleTask(task) {
+function toggleTask(task: Task) {
   updateTask({
     ...task,
-    done: task.done ? false : Temporal.Now.plainDateTimeISO(),
+    done: task.done ? null : Temporal.Now.plainDateTimeISO(),
   });
 }
 </script>

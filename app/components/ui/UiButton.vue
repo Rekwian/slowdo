@@ -1,30 +1,39 @@
-<template lang="pug">
-component(
-  :class="[$style.button, variant]"
-  :is="is"
-  :to="to"
-  v-bind="$attrs"
-)
-  slot
+<template>
+  <component
+    :class="[$style.button, variantClass]"
+    :is="is"
+    :to="to"
+    :type="type"
+    :disabled="disabled"
+    @click="$emit('click')"
+  >
+    <slot />
+  </component>
 </template>
 
-<script setup>
-const props = defineProps({
-  to: { default: undefined, type: [Object, String] },
-  variant: { default: 'normal', type: String },
-})
+<script setup lang="ts">
+import type { ButtonHTMLAttributes } from 'vue';
+
+const { variant = 'normal', to } = defineProps<{
+  to?: string | object,
+  variant?: 'normal' | 'flat' | 'link',
+  type?: ButtonHTMLAttributes['type'],
+  disabled?: ButtonHTMLAttributes['disabled'],
+}>()
+
+defineEmits(['click']);
 
 const css = useCssModule();
 
 const is = computed(() => {
-  if (props.to) {
+  if (to) {
     return resolveComponent('nuxt-link')
   }
 
   return 'button';
 })
 
-const variant = css[props.variant] ?? css.normal
+const variantClass = css[variant] ?? css.normal
 </script>
 
 
@@ -55,11 +64,17 @@ const variant = css[props.variant] ?? css.normal
   color: var(--color-background-text);
   font-style: italic;
 
-  &:hover,
-  &:focus {
-    background-color: var(--color-background-hover);
-    border-color: var(--color-primary-hover);
-    color: var(--color-primary-hover-text);
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: var(--color-background-hover);
+      color: var(--color-background-hover-text);
+    }
+  }
+
+  &:disabled {
+    background-color: hsla(from var(--color-background) h s l / 0.3);
+    color: hsl(from var(--color-background-text) h 90% 30%);
   }
 }
 
@@ -68,24 +83,29 @@ const variant = css[props.variant] ?? css.normal
   border: 1.5px solid var(--color-background);
   color: var(--color-background-text-muted);
   font-style: italic;
-  text-decoration: underline;
   text-decoration-color: hsl(from var(--color-background-text-muted) h s 40%);
 
-  &:hover,
-  &:focus {
-    background-color: var(--color-background-hover);
-    border-color: var(--color-background-hover);
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: var(--color-background-hover);
+      color: var(--color-background-hover-text);
+    }
   }
 }
 
 .link {
   background-color: transparent;
+  border: 0;
   color: var(--color-background-text);
 
-  &:hover,
-  &:focus {
-    background-color: var(--color-background-hover);
-    border-color: var(--color-background-hover);
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: var(--color-background-hover);
+      border-color: var(--color-background-hover);
+      color: var(--color-background-hover-text);
+    }
   }
 }
 </style>

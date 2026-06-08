@@ -10,7 +10,11 @@ export default defineNuxtConfig({
       ]
     }
   },
-  css: ["reset-css", "assets/css/default.css"],
+  css: [
+    "reset-css",
+    "assets/css/default.css",
+    "assets/transitions/bounce-in.css"
+  ],
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   googleFonts: {
@@ -40,6 +44,8 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       vueCompilerOptions: {
+        target: 3.5,
+        strictTemplates: true,
         plugins: ["@vue/language-plugin-pug"],
       },
     },
@@ -78,9 +84,6 @@ export default defineNuxtConfig({
         },
       ],
     },
-    // devOptions: {
-    //   enabled: true,
-    // },
   },
   vite: {
     optimizeDeps: {

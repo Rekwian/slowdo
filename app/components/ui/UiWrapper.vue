@@ -1,21 +1,23 @@
-<template lang="pug">
-div(:class="$style.wrapper")
-  div
-    h1(:class="$style.title") {{ title }}
-    h2(v-if="subtitle" :class="$style.subtitle") {{ subtitle }}
-
-  div
-    slot
-
-  div
-    slot(name="actions")
+<template>
+  <div :class="$style.wrapper">
+    <div>
+      <h1>{{ title }}</h1>
+      <h2 v-if="subtitle" :class="$style.subtitle">{{ subtitle }}</h2>
+    </div>
+    <div v-if="$slots.default">
+      <slot></slot>
+    </div>
+    <div v-if="$slots.actions">
+      <slot name="actions"></slot>
+    </div>
+  </div>
 </template>
 
-<script setup>
-defineProps({
-  title: { required: true, type: String },
-  subtitle: { default: undefined, type: String }
-})
+<script setup lang="ts">
+defineProps<{
+  title: string,
+  subtitle?: string
+}>()
 </script>
 
 <style module>
@@ -29,18 +31,8 @@ defineProps({
   text-align: center;
 }
 
-.title {
-  color: var(--color-background-text);
-  font-family: 'Quicksand', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 400;
-  line-height: 1.4;
-  max-width: 560px;
-}
-
 .subtitle {
   color: var(--color-background-text-muted);
-  font-size: 1rem;
   letter-spacing: 0.06em;
   margin-top: 0.75rem;
   text-transform: lowercase;

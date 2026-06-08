@@ -1,5 +1,5 @@
-<template lang="pug">
-  nuxt-pwa-assets
-  nuxt-loading-indicator
-  nuxt-page
+<template>
+  <nuxt-pwa-assets />
+  <nuxt-loading-indicator />
+  <nuxt-page />
 </template>

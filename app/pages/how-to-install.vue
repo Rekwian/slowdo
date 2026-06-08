@@ -1,5 +1,6 @@
-<template lang="pug">
-nuxt-layout
-  h1 Comment installer l'application sur mon périphérique
-  block-install-pwa
+<template>
+  <nuxt-layout>
+    <h1>Comment installer l'application sur mon périphérique</h1>
+    <block-install-pwa />
+  </nuxt-layout>
 </template>

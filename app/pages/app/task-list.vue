@@ -1,36 +1,47 @@
-<template lang="pug">
-div(:class="$style.wrapper")
-  ui-button(
-    :class="[$style.back, 'button']"
-    :to="$localePath('app-index')"
-    variant="flat"
-  ) ← {{ $t('page.tasks.back') }}
+<template>
+  <nuxt-layout>
+    <div :class="$style.wrapper">
+      <ui-button :class="[$style.back, 'button']" :to="$localePath('app')" variant="link">
+        ← {{ $t('page.tasks.back') }}
+      </ui-button>
 
-  //- in Progress
-  section(v-if="pendingTasks.length" :class="$style.section")
-    h2(:class="$style.title") {{ $t('page.tasks.pending') }}
-    ul(:class="$style.list")
-      li(v-for="item in pendingTasks" :key="item.id")
-        ui-task-card(:task="item")
+      <section v-if="pendingTasks.length" :class="$style.section">
+        <h2 :class="$style.title">{{ $t('page.tasks.pending') }}</h2>
 
-  //- done
-  section(v-if="doneTasks.length" :class="$style.section")
-    button(:class="$style.accordionToggle" @click="doneOpen = !doneOpen")
-      h2(:class="$style.title") {{ $t('page.tasks.done') }}
-      span(:class="[$style.chevron, { [$style.chevronOpen]: doneOpen }]") ›
+        <ul :class="$style.list">
+          <li v-for="item in pendingTasks" :key="String(item.id)">
+            <ui-task-card :task="item"></ui-task-card>
+          </li>
+        </ul>
+      </section>
 
-    Transition(name="slide")
-      div(v-if="doneOpen")
-        button(:class="$style.clearAll" @click="removeAllDone") {{ $t('page.tasks.clearAll') }}
-        ul(:class="$style.list")
-          li(v-for="item in doneTasks" :key="item.id")
-            ui-task-card(:task="item")
+      <section v-if="doneTasks.length" :class="$style.section">
+        <button :class="$style.accordionToggle" @click="doneOpen = !doneOpen">
+          <h2 :class="$style.title">{{ $t('page.tasks.done') }}</h2><span :class="[$style.chevron, { [$style.chevronOpen]: doneOpen }]">›</span>
+        </button>
 
-  p(v-if="!tasks.length" :class="$style.empty") {{ $t('page.tasks.empty') }}
-  ui-fab-add-task(:class="$style.fabAction")
+        <Transition name="slide">
+          <div v-if="doneOpen">
+            <button :class="$style.clearAll" @click="removeAllDone">{{ $t('page.tasks.clearAll') }}</button>
+            <ul :class="$style.list">
+              <li v-for="item in doneTasks" :key="String(item.id)">
+                <ui-task-card :task="item" />
+              </li>
+            </ul>
+          </div>
+        </Transition>
+      </section>
+
+      <p v-if="!tasks.length" :class="$style.empty">{{ $t('page.tasks.empty') }}</p>
+    </div>
+
+    <template #actions>
+      <ui-button variant="link" :to="$localePath('app-create-task')">{{ $t('page.index.actions.addTask') }}</ui-button>
+    </template>
+  </nuxt-layout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { getTasks, tasks, removeTask } = useTodo();
 
 const doneOpen = ref(false);

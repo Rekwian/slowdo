@@ -50,5 +50,13 @@
       "remove": "remove",
       "back": "back to my task"
     }
+  },
+  "layout": {
+    "nav": {
+      "howToInstall": "My task for today",
+      "menu": "Menu",
+      "taskList": "Access my task list",
+      "todayTask": "How to install the application on my device"
+    }
   }
 }

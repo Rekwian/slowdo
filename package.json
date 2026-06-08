@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@vite-pwa/assets-generator": "^1.0.2",
+    "@vue/language-core": "^3.3.3",
     "@vue/language-plugin-pug": "^3.2.7",
     "globals": "^17.6.0",
     "pug": "^3.0.4",
@@ -30,6 +31,8 @@
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-nuxt-rules": "github:Rekwian/stylelint-nuxt-rules",
-    "stylelint-order": "^8.1.1"
+    "stylelint-order": "^8.1.1",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.3"
   }
 }
