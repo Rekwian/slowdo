@@ -1,4 +1,7 @@
 {
+  "formRules": {
+    "required": "You need to fill this field"
+  },
   "page": {
     "index": {
       "noTaskWithDone": {
@@ -51,12 +54,17 @@
       "back": "back to my task"
     }
   },
+  "component": {
+    "UiDatePicker": {
+      "placeholder": "pick a date"
+    }
+  },
   "layout": {
     "nav": {
-      "howToInstall": "My task for today",
+      "howToInstall": "How to install the application on my device",
       "menu": "Menu",
       "taskList": "Access my task list",
-      "todayTask": "How to install the application on my device"
+      "todayTask": "My task for today"
     }
   }
 }

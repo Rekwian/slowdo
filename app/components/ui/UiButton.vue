@@ -49,8 +49,7 @@ const variantClass = css[variant] ?? css.normal
   letter-spacing: 0.04em;
   padding: 0.75rem 2rem;
   text-decoration: none;
-  transition: border-color var(--transition), color var(--transition),
-    background-color var(--transition), box-shadow var(--transition);
+  transition: all 0.2s, filter 0.5s;
 
   &:hover,
   &:focus {
@@ -73,8 +72,9 @@ const variantClass = css[variant] ?? css.normal
   }
 
   &:disabled {
-    background-color: hsla(from var(--color-background) h s l / 0.3);
-    color: hsl(from var(--color-background-text) h 90% 30%);
+    cursor: default;
+    opacity: 0.5;
+    filter: blur(0.2rem);
   }
 }
 

@@ -1,4 +1,7 @@
 {
+  "formRules": {
+    "required": "Il faut remplir ce champ"
+  },
   "page": {
     "index": {
       "noTaskWithDone": {
@@ -49,6 +52,11 @@
       "markUndone": "remettre en cours",
       "remove": "supprimer",
       "back": "retour à ma tache"
+    }
+  },
+  "component": {
+    "UiDatePicker": {
+      "placeholder": "Sélectionne une date"
     }
   },
   "layout": {

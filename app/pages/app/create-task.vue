@@ -5,10 +5,12 @@
 
       <fieldset v-show="step === 'name'">
         <ui-wrapper :title="$t('page.createTask.step1.title')" :subtitle="$t('page.createTask.step1.subTitle')">
-          <input autocomplete="off" name="name" :placeholder="$t('page.createTask.step1.placeholder')" v-model="name"/>
+
+          <input autocomplete="off" name="name" :placeholder="$t('page.createTask.step1.placeholder')" v-model="r$.$value.name"/>
+          <ui-field-error :errors="r$.name.$errors" />
 
           <template #actions>
-            <ui-button @click="name && goToStep('length')" type="button" :disabled="!name">
+            <ui-button @click="!r$.$invalid && goToStep('length')" type="button" :disabled="r$.$invalid">
               {{ $t('page.createTask.step1.validationAction') }}
             </ui-button>
           </template>
@@ -19,7 +21,7 @@
         <ui-wrapper :title="$t('page.createTask.step2.title')">
           <div :class="$style.lengthChoices">
             <label v-for="(label, length) in lengths" :key="length">
-              <input type="radio" name="length" :value="length" v-model="lengthChoice"/>
+              <input type="radio" name="length" :value="length" v-model="lengthChoice" required />
 
               <ui-button @click="lengthChoice = length; goToStep('deadline')" type="button">
                 {{ label }}
@@ -31,12 +33,8 @@
 
       <fieldset v-show="step === 'deadline'">
         <ui-wrapper :title="$t('page.createTask.step3.title')">
-          <div :class="$style.dateWrapper">
-            <input type="date" name="deadline" v-model="deadline" placeholder="DD/MM/YYYY"/>
-
-            <ui-button v-if="deadline" type="button" :class="$style.clearBtn" @click="clearDeadline">
-              ×
-            </ui-button>
+          <div :class="$style.dateWrapper" style="display: flex; flex-direction: column;">
+            <ui-date-picker v-model="deadline"/>
           </div>
 
           <template #actions>
@@ -53,6 +51,8 @@
 <script setup lang="ts">
 import { newTask } from '@/entity/tasks';
 import { Temporal } from '@js-temporal/polyfill';
+import { useRegle } from '#imports';
+import { required } from '@regle/rules';
 
 const emit = defineEmits(['submit']);
 const { t } = useI18n();
@@ -66,7 +66,6 @@ const steps = ['name', 'length', 'deadline'];
 const step = ref('name');
 
 // Form values
-const name: Ref<string | null> = ref(null);
 const deadline: Ref<Temporal.PlainDate | null> = ref(null);
 const lengthChoice: Ref<string | null> = ref(null);
 
@@ -74,15 +73,17 @@ const { addTask } = useTodo();
 const router = useRouter();
 const route = useRoute()
 const localePath = useLocalePath();
-
-function clearDeadline() {
-  deadline.value = null;
-}
+const { r$ } = useRegle(
+  { name: '' },
+  {
+    name: { required },
+  }
+);
 
 function handleSubmit() {
   const task = {
     ...newTask,
-    name: name.value,
+    name: r$.$value.name,
     deadline: deadline.value,
     length: lengthChoice.value,
   }

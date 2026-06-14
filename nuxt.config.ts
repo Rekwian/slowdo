@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   },
   css: [
     "reset-css",
+    "@vuepic/vue-datepicker/dist/main.css",
     "assets/css/default.css",
     "assets/transitions/bounce-in.css"
   ],
@@ -27,6 +28,8 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts", // https://google-fonts.nuxtjs.org
     "@nuxtjs/i18n", // https://i18n.nuxtjs.org
     "@vite-pwa/nuxt", // https://vite-pwa-org.netlify.app
+    "@regle/nuxt", // https://reglejs.dev
+    "@vueuse/nuxt", // https://vueuse.org
   ],
   i18n: {
     defaultLocale: "en",
@@ -39,6 +42,9 @@ export default defineNuxtConfig({
       { code: "en", name: "English", file: "en.json" },
       { code: "fr", name: "French", file: "fr.json" },
     ],
+  },
+  regle: {
+    setupFile: '~/regle-config.ts'
   },
   ssr: false,
   typescript: {

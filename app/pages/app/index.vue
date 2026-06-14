@@ -1,13 +1,13 @@
 <template>
   <nuxt-layout>
-    <template v-if="!currentTask &amp;&amp; !toDoTasks?.length">
+    <template v-if="!currentTask && !toDoTasks?.length">
       <ui-wrapper :title="noTaskText.title" :subtitle="noTaskText.text" />
     </template>
 
-    <template v-if="!currentTask &amp;&amp; !!toDoTasks?.length">
+    <template v-if="!currentTask && !!toDoTasks?.length">
       <ui-wrapper :title="noTaskText.title" :subtitle="noTaskText.text">
         <template #actions>
-          <ui-button variant="flat" v-if="toDoTasks.length > 1" @click="() => selectTask(true)">{{ $t('page.index.actions.canDoAnotherTask') }}</ui-button>
+          <ui-button variant="flat" v-if="toDoTasks.length >= 1" @click="() => selectTask(true)">{{ $t('page.index.actions.canDoAnotherTask') }}</ui-button>
         </template>
       </ui-wrapper>
     </template>

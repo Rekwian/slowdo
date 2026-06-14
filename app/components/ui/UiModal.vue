@@ -46,7 +46,7 @@ defineExpose({
   margin: auto;
 
   &::backdrop {
-    background-color: rgba(0 0 0 / 0.1);
+    background-color: rgba(50 50 50 / 0.1);
     backdrop-filter: blur(8px);
   }
 }

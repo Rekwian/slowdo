@@ -38,7 +38,7 @@
   --color-primary-hover: hsl(from var(--color-primary) h s 18%);
   --color-primary-hover-text: white;
   --color-background: hsl(from var(--color-primary) h s 12%);
-  --color-background-gradient: rgb(68, 68, 68);
+  --color-background-gradient: rgb(0, 0, 0);
   --color-background-text: var(--color-primary);
   --color-background-text-muted: hsl(from var(--color-primary) h s 40%);
   --color-background-hover: hsl(from var(--color-primary) h s 18%);
@@ -70,6 +70,7 @@ button,
 input,
 select,
 textarea {
+  display: block;
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
 }
@@ -87,6 +88,7 @@ h1 {
 input:not([type='radio']):not([type='checkbox']) {
   appearance: none;
   background-color: transparent;
+  min-width: 300px;
   border: none;
   border-bottom: 1.5px solid var(--color-primary);
   color: var(--color-background-text);
