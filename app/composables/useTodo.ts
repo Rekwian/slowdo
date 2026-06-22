@@ -103,7 +103,7 @@ export default () => {
     const storeTask = tasks.value.find((item: Task) => item.id === task.id)
 
     if (storeTask) {
-      Object.assign(storeTask, task);
+      Object.assign(storeTask, normalize(task));
     }
   }
 
@@ -127,21 +127,41 @@ export default () => {
    * task based on its deadline and length (light or heavy).
    */
   function taskRolling(taskList: Task[]) {
-    const deadLineTask = taskList.filter((task: Task) => !task.done && task.deadline);
-    const lightTask = taskList.filter((task: Task) => !task.done && task.length === 'light');
-    const heavyTask = taskList.filter((task: Task) => !task.done && task.length === 'heavy');
+    const now = Temporal.PlainDate.from(Temporal.Now.plainDateISO())
+    const shortDeadLineTasks = taskList.filter((task: Task) => !task.done && task.deadline && now.until(task.deadline).total('days') <= 14);
 
-    if (deadLineTask.length) {
-      return deadLineTask[Math.floor(Math.random() * deadLineTask.length)];
+    if (shortDeadLineTasks.length) {
+      return shortDeadLineTasks[Math.floor(Math.random() * shortDeadLineTasks.length)];
     }
 
-    if (lightTask.length) {
-      return lightTask[Math.floor(Math.random() * lightTask.length)];
+    const deadLineTasks = taskList.filter((task: Task) => !task.done && task.deadline && now.until(task.deadline).total('days') > 14);
+    const lightTasks = taskList.filter((task: Task) => !task.done && !task.deadline && task.length === 'light');
+    const heavyTasks = taskList.filter((task: Task) => !task.done && !task.deadline && task.length === 'heavy');
+
+    const pools: { list: Task[]; weight: number }[] = [
+      { list: lightTasks, weight: 0.6 },
+      { list: deadLineTasks, weight: 0.3 },
+      { list: heavyTasks, weight: 0.1 },
+    ];
+
+    const available = pools.filter((p) => p.list.length > 0);
+    if (available.length === 0) {
+      return undefined;
+    };
+
+    const totalWeight = available.reduce((sum, p) => sum + p.weight, 0);
+    let roll = Math.random() * totalWeight;
+
+    for (const pool of available) {
+      if (roll < pool.weight) {
+        return pool.list[Math.floor(Math.random() * pool.list.length)];
+      }
+
+      roll -= pool.weight;
     }
 
-    if (heavyTask.length) {
-      return heavyTask[Math.floor(Math.random() * heavyTask.length)];
-    }
+    // fallback de sécurité (ne devrait pas arriver)
+    return available[0]?.list[0];
   }
 
   /**

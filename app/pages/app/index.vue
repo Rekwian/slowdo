@@ -59,7 +59,6 @@ async function checkTask() {
   }
 
   await updateTask(task);
-  await resetSelectedTasks();
 }
 
 const noTaskText = computed(() => {
