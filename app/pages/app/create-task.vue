@@ -49,6 +49,7 @@
 </template>
 
 <script setup lang="ts">
+const value: string | null = 'abc'
 import { newTask } from '@/entity/tasks';
 import { Temporal } from '@js-temporal/polyfill';
 import { useRegle } from '#imports';

@@ -50,8 +50,6 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       vueCompilerOptions: {
-        target: 3.5,
-        strictTemplates: true,
         plugins: ["@vue/language-plugin-pug"],
       },
     },
