@@ -1,13 +1,13 @@
-<template>
-  <vue-date-picker
-    v-model="date"
-    auto-apply
-    :placeholder="$t('component.UiDatePicker.placeholder')"
-    :time-config="{ enableTimePicker: false }"
-    :locale="localepicker"
-    :formats="{ input: formatPicker }"
-    :dark="isDark"
-  />
+<template lang="pug">
+vue-date-picker(
+  v-model="date"
+  auto-apply
+  :placeholder="$t('component.UiDatePicker.placeholder')"
+  :time-config="{ enableTimePicker: false }"
+  :locale="localepicker"
+  :formats="{ input: formatPicker }"
+  :dark="isDark"
+)
 </template>
 
 <script setup lang="ts">

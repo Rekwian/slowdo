@@ -1,21 +1,19 @@
-<template>
-  <div>
-    <template v-if="!$pwa?.isPWAInstalled && $pwa?.showInstallPrompt">
-      <ui-button @click="() => $pwa?.install()">install</ui-button>
-    </template>
+<template lang="pug">
+div
+  template(v-if="!$pwa?.isPWAInstalled && $pwa?.showInstallPrompt")
+    ui-button(@click="() => $pwa?.install()") installer
 
-    <template v-else>
-      <p>Malheureusement, votre navigateur ne permet pas d'installer l'application</p>
-    </template>
-  </div>
+  template(v-else)
+    p(:class="$style.fail")
+      | Malheureusement, ton navigateur ne permet pas d'installer l'application. <br/>
+      | Essaye avec un autre navigateur.
 </template>
 
 <style module>
-.true {
-  color: green;
-}
-
-.false {
-  color: red;
+.fail {
+  border-radius: 1rem;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  padding: 1rem;
 }
 </style>

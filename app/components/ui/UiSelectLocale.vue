@@ -1,13 +1,10 @@
-<template>
-  <select v-model="currentLocale" :class="$style.select">
-    <option
-      v-for="{ code, name } in locales"
-      :key="code"
-      :value="code"
-    >
-      {{ name }}
-    </option>
-  </select>
+<template lang="pug">
+select(v-model="currentLocale" :class="$style.select")
+  option(
+    v-for="{ code, name } in locales"
+    :key="code"
+    :value="code"
+  ) {{ name }}
 </template>
 
 <script setup lang="ts">

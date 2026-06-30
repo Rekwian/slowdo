@@ -1,14 +1,13 @@
-<template>
-  <component
-    :class="[$style.button, variantClass]"
-    :is="is"
-    :to="to"
-    :type="type"
-    :disabled="disabled"
-    @click="$emit('click')"
-  >
-    <slot />
-  </component>
+<template lang="pug">
+component(
+  :class="[$style.button, variantClass]"
+  :is="is"
+  :to="to"
+  :type="type"
+  :disabled="disabled"
+  @click="$emit('click')"
+)
+  slot
 </template>
 
 <script setup lang="ts">

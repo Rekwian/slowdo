@@ -1,15 +1,13 @@
-<template>
-  <div :class="$style.layout">
-    <header :class="$style.header">
-      <ui-menu />
-    </header>
-    <main :class="$style.main">
-      <slot></slot>
-    </main>
-    <footer :class="$style.footer">
-      <slot name="actions"></slot>
-    </footer>
-  </div>
+<template lang="pug">
+div(:class="$style.layout")
+  header(:class="$style.header")
+    ui-menu
+
+  main(:class="$style.main")
+    slot
+
+  footer(:class="$style.footer")
+    slot(name="actions")
 </template>
 
 <style module>

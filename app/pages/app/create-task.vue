@@ -1,55 +1,34 @@
-<template>
-  <nuxt-layout>
-    <form @submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter">
-      <ui-button :class="[$style.back, 'button']" :to="$localePath('app')" variant="link">← {{ $t('page.tasks.back') }}</ui-button>
+<template lang="pug">
+nuxt-layout
+  form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
+    ui-button(:class="[$style.back, 'button']" :to="$localePath('app')" variant="link") ← {{ $t('page.tasks.back') }}
 
-      <fieldset v-show="step === 'name'">
-        <ui-wrapper :title="$t('page.createTask.step1.title')" :subtitle="$t('page.createTask.step1.subTitle')">
+    fieldset(v-show="step === 'name'")
+      ui-wrapper(:title="$t('page.createTask.step1.title')" :subtitle="$t('page.createTask.step1.subTitle')")
+        input(autocomplete="off" name="name" :placeholder="$t('page.createTask.step1.placeholder')" v-model="r$.$value.name")
+        ui-field-error(:errors="r$.name.$errors")
 
-          <input autocomplete="off" name="name" :placeholder="$t('page.createTask.step1.placeholder')" v-model="r$.$value.name"/>
-          <ui-field-error :errors="r$.name.$errors" />
+        template(#actions)
+          ui-button(@click="!r$.$invalid && goToStep('length')" type="button" :disabled="r$.$invalid") {{ $t('page.createTask.step1.validationAction') }}
 
-          <template #actions>
-            <ui-button @click="!r$.$invalid && goToStep('length')" type="button" :disabled="r$.$invalid">
-              {{ $t('page.createTask.step1.validationAction') }}
-            </ui-button>
-          </template>
-        </ui-wrapper>
-      </fieldset>
+    fieldset(v-show="step === 'length'")
+      ui-wrapper(:title="$t('page.createTask.step2.title')")
+        div(:class="$style.lengthChoices")
+          label(v-for="(label, length) in lengths" :key="length")
+            input(type="radio" name="length" :value="length" v-model="lengthChoice" required)
 
-      <fieldset v-show="step === 'length'">
-        <ui-wrapper :title="$t('page.createTask.step2.title')">
-          <div :class="$style.lengthChoices">
-            <label v-for="(label, length) in lengths" :key="length">
-              <input type="radio" name="length" :value="length" v-model="lengthChoice" required />
+            ui-button(@click="lengthChoice = length; goToStep('deadline')" type="button") {{ label }}
 
-              <ui-button @click="lengthChoice = length; goToStep('deadline')" type="button">
-                {{ label }}
-              </ui-button>
-            </label>
-          </div>
-        </ui-wrapper>
-      </fieldset>
+    fieldset(v-show="step === 'deadline'")
+      ui-wrapper(:title="$t('page.createTask.step3.title')")
+        div(:class="$style.dateWrapper" style="display: flex; flex-direction: column;")
+          ui-date-picker(v-model="deadline")
 
-      <fieldset v-show="step === 'deadline'">
-        <ui-wrapper :title="$t('page.createTask.step3.title')">
-          <div :class="$style.dateWrapper" style="display: flex; flex-direction: column;">
-            <ui-date-picker v-model="deadline"/>
-          </div>
-
-          <template #actions>
-            <ui-button type="submit">
-              {{ deadline ? $t('page.createTask.step3.validationAction') : $t('page.createTask.step3.validationActionNoDate') }}
-            </ui-button>
-          </template>
-        </ui-wrapper>
-      </fieldset>
-    </form>
-  </nuxt-layout>
+        template(#actions)
+          ui-button(type="submit") {{ deadline ? $t('page.createTask.step3.validationAction') : $t('page.createTask.step3.validationActionNoDate') }}
 </template>
 
 <script setup lang="ts">
-const value: string | null = 'abc'
 import { newTask } from '@/entity/tasks';
 import { Temporal } from '@js-temporal/polyfill';
 import { useRegle } from '#imports';

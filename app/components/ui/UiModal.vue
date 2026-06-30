@@ -1,18 +1,18 @@
-<template>
-  <dialog
-    closedby="any"
-    ref="dialog"
-    :id="id"
-    :open="open"
-    :class="$style.dialog"
-  >
-    <ui-button
-     :class="$style.closeButton"
-     variant="link"
-     @click="close"
-    >Fermer</ui-button>
-    <slot />
-  </dialog>
+<template lang="pug">
+dialog(
+  closedby="any"
+  ref="dialog"
+  :id="id"
+  :open="open"
+  :class="$style.dialog"
+)
+  ui-button(
+    :class="$style.closeButton"
+    variant="link"
+    @click="close"
+  ) Fermer
+
+  slot
 </template>
 
 <script setup lang="ts">

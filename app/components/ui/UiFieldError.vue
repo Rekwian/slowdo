@@ -1,9 +1,6 @@
-<template>
-  <p :class="$style.error">
-    <span v-for="error of errors">
-      {{ error }}
-    </span>
-  </p>
+<template lang="pug">
+p(:class="$style.error")
+  span(v-for="error of errors") {{ error }}
 </template>
 
 <script setup lang="ts">

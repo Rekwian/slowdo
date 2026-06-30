@@ -1,16 +1,14 @@
-<template>
-  <div :class="$style.wrapper">
-    <div>
-      <h1>{{ title }}</h1>
-      <h2 v-if="subtitle" :class="$style.subtitle">{{ subtitle }}</h2>
-    </div>
-    <div v-if="$slots.default">
-      <slot></slot>
-    </div>
-    <div v-if="$slots.actions">
-      <slot name="actions"></slot>
-    </div>
-  </div>
+<template lang="pug">
+div(:class="$style.wrapper")
+  div
+    h1 {{ title }}
+    h2(v-if="subtitle" :class="$style.subtitle") {{ subtitle }}
+
+  div(v-if="$slots.default")
+    slot
+
+  div(v-if="$slots.actions")
+    slot(name="actions")
 </template>
 
 <script setup lang="ts">

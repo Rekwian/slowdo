@@ -1,26 +1,19 @@
-<template>
-  <div :class="{[$style.task]: true, [$style.taskDone]: task.done }">
-    <div :class="$style.info">
-      <div :class="$style.head">
-        <button :class="$style.checkAction" @click="() => toggleTask(task)" :aria-label="$t('page.tasks.markDone')">
-          <icons-check v-if="task.done" />
-        </button>
+<template lang="pug">
+div(:class="{[$style.task]: true, [$style.taskDone]: task.done }")
+  div(:class="$style.info")
+    div(:class="$style.head")
+      button(:class="$style.checkAction" @click="() => toggleTask(task)" :aria-label="$t('page.tasks.markDone')")
+        icons-check(v-if="task.done")
 
-        <p :class="$style.taskName">{{ task.name }}</p>
-      </div>
+      p(:class="$style.taskName") {{ task.name }}
 
-      <ul :class="$style.meta">
-        <li v-if="task.length">{{ $t(`page.createTask.step2.${task.length}`) }}</li>
-        <li v-if="task.deadline">{{ $d(new Date(task.deadline!.toString()), 'short') }}</li>
-      </ul>
-    </div>
+    ul(:class="$style.meta")
+      li(v-if="task.length") {{ $t(`page.createTask.step2.${task.length}`) }}
+      li(v-if="task.deadline") {{ $d(new Date(task.deadline.toString()), 'short') }}
 
-    <div :class="$style.actions">
-      <button :class="$style.removeAction" @click="() => removeTask(task)" :aria-label="$t('page.tasks.remove')">
-        <icons-trash />
-      </button>
-    </div>
-  </div>
+  div(:class="$style.actions")
+    button(:class="$style.removeAction" @click="() => removeTask(task)" :aria-label="$t('page.tasks.remove')")
+      icons-trash
 </template>
 
 <script setup lang="ts">

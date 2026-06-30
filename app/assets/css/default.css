@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   --color-primary: hsl(184, 88%, 74%);
   --color-secondary: hsl(from var(--color-primary) calc(h + -15) s l);
   --color-tertiary: hsl(from var(--color-primary) calc(h + 30) s l);
@@ -85,7 +87,7 @@ h1 {
 }
 
 /* ── Input ── */
-input:not([type='radio']):not([type='checkbox']) {
+input:not([type="radio"]):not([type="checkbox"]) {
   appearance: none;
   background-color: transparent;
   min-width: 300px;
@@ -114,6 +116,33 @@ input:not([type='radio']):not([type='checkbox']) {
 }
 
 /* datetime-local */
-input[type='datetime-local'] {
+input[type="datetime-local"] {
   color-scheme: dark;
+}
+
+
+.article {
+  text-align: left;
+  max-width: 700px;
+
+  h2 {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    text-decoration: underline;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
 }

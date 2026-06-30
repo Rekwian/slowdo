@@ -1,5 +1,4 @@
-<template>
-  <nuxt-layout>
-    <div>test</div>
-  </nuxt-layout>
+<template lang="pug">
+nuxt-layout
+  div test
 </template>
