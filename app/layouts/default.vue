@@ -39,10 +39,10 @@ div(:class="$style.layout")
 }
 
 .footer {
-  position: sticky;
   bottom: 1rem;
   display: flex;
   grid-area: footer;
   justify-content: flex-end;
+  position: sticky;
 }
 </style>

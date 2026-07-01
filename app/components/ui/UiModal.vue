@@ -46,14 +46,14 @@ defineExpose({
   margin: auto;
 
   &::backdrop {
-    background-color: rgba(50 50 50 / 0.1);
     backdrop-filter: blur(8px);
+    background-color: rgba(50 50 50 / 0.1);
   }
 }
 
 .closeButton {
   position: fixed;
-  top: 1rem;
   right: 1rem;
+  top: 1rem;
 }
 </style>

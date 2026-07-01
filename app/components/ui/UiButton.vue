@@ -62,18 +62,18 @@ const variantClass = css[variant] ?? css.normal
   color: var(--color-background-text);
   font-style: italic;
 
+  &:disabled {
+    cursor: default;
+    filter: blur(0.2rem);
+    opacity: 0.5;
+  }
+
   &:not(:disabled) {
     &:hover,
     &:focus {
       background-color: var(--color-background-hover);
       color: var(--color-background-hover-text);
     }
-  }
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
-    filter: blur(0.2rem);
   }
 }
 

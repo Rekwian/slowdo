@@ -11,9 +11,9 @@ div
 
 <style module>
 .fail {
+  border: 1px solid var(--color-error);
   border-radius: 1rem;
   color: var(--color-error);
-  border: 1px solid var(--color-error);
   padding: 1rem;
 }
 </style>

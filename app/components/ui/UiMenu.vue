@@ -41,24 +41,24 @@ onUnmounted(() => {
 
 <style module>
 .wrapper {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 2rem;
 }
 
 .title {
-  text-align: center;
   color: var(--color-background-text);
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .locale {
   background-color: light-dark(var(--color-background), black);
   border-radius: 2rem;
+  bottom: 1rem;
   padding: 0.5rem 1rem;
   position: fixed;
-  bottom: 1rem;
 }
 
 .nav {
@@ -67,8 +67,8 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;;
   gap: 1em;
-  text-align: center;
   padding: 1rem;
+  text-align: center;
 
   a {
     color: var(--color-primary-text);
@@ -80,9 +80,9 @@ onUnmounted(() => {
   background-color: hsla(0 0% 100% / 0.4);
   border-radius: 2rem;
   display: block;
+  height: 100%;
   padding: 1rem;
   text-align: center;
-  height: 100%;
 
   .cardTitle {
     font-weight: 400;

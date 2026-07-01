@@ -11,7 +11,7 @@ defineProps<{
 
 <style module>
 .error {
-  min-height: 2rem;
   font-size: 1rem;
+  min-height: 2rem;
 }
 </style>

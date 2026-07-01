@@ -42,8 +42,10 @@ function toggleTask(task: Task) {
   padding: 1rem 1.25rem;
 }
 
-.info {
-  flex: 1;
+.taskName {
+  font-family: 'quicksand',sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .taskDone {
@@ -51,6 +53,10 @@ function toggleTask(task: Task) {
   .taskName {
     text-decoration: line-through;
   }
+}
+
+.info {
+  flex: 1;
 }
 
 .head {
@@ -80,13 +86,6 @@ function toggleTask(task: Task) {
     box-shadow: none;
     color: var(--color-accent);
   }
-}
-
-
-.taskName {
-  font-family: 'quicksand',sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
 }
 
 .meta {
