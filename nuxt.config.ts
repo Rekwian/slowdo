@@ -35,8 +35,7 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: false
+      cookieKey: 'i18n_redirected'
     },
     locales: [
       { code: "en", name: "English", file: "en.json" },
@@ -46,7 +45,6 @@ export default defineNuxtConfig({
   regle: {
     setupFile: '~/regle-config.ts'
   },
-  ssr: false,
   typescript: {
     tsConfig: {
       vueCompilerOptions: {
@@ -59,10 +57,10 @@ export default defineNuxtConfig({
       installPrompt: true,
     },
     pwaAssets: {
+      image: 'logo.svg',
       // https://vite-pwa-org.netlify.app/assets-generator/integrations.html
       disabled: false,
     },
-    injectManifest: false,
     registerType: "autoUpdate",
     manifest: {
       name: "Slowdo",
@@ -94,4 +92,8 @@ export default defineNuxtConfig({
       include: ["@vue/devtools-core", "@vue/devtools-kit"],
     },
   },
+  routeRules: {
+    '/app/**': { ssr: false },
+    '/*/app/**': { ssr: false }
+  }
 });

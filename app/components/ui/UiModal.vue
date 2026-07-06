@@ -10,7 +10,7 @@ dialog(
     :class="$style.closeButton"
     variant="link"
     @click="close"
-  ) Fermer
+  ) {{ $t('component.UiModal.action.close') }}
 
   slot
 </template>
@@ -24,10 +24,6 @@ defineProps<{
 }>()
 
 const dialog = ref<HTMLDialogElement | null>(null);
-
-onMounted(() => {
-  // dialog.value?.showModal();
-})
 
 function close() {
   dialog.value?.close();

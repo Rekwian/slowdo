@@ -1,5 +1,5 @@
 <template lang="pug">
-nuxt-layout
+nuxt-layout(name="app")
   div(:class="$style.wrapper")
     ui-button(:class="[$style.back, 'button']" :to="$localePath('app')" variant="link") ← {{ $t('page.tasks.back') }}
 
@@ -24,7 +24,7 @@ nuxt-layout
     p(v-if="!tasks.length" :class="$style.empty") {{ $t('page.tasks.empty') }}
 
   template(#actions)
-    ui-button(variant="link" :to="$localePath('app-create-task')") {{ $t('page.index.actions.addTask') }}
+    ui-button(variant="link" :to="$localePath('app-create-task')") {{ $t('page.app.actions.addTask') }}
 </template>
 
 <script setup lang="ts">

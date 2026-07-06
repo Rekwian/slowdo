@@ -3,7 +3,51 @@
     "required": "Il faut remplir ce champ"
   },
   "page": {
-    "index": {
+    "home": {
+      "hero": {
+        "title": "Une seule tache\net c'est déjà suffisant",
+        "description": "Slowdo est une todo-list pensée pour réduire la surcharge mentale. Chaque jour, une seule tâche est mise en avant. Tu avances sans pression, à ton rythme.",
+        "cardTitle": "Aujourd’hui",
+        "taskTitle": "✓ Arroser les plantes"
+      },
+      "whyItWork": {
+        "description": "es listes longues créent de la fatigue mentale. Slowdo réduit la charge cognitive.",
+        "title": "Pourquoi ça marche ?",
+        "list": {
+          "1": "✔ Une seule décision par jour",
+          "2": "✔ Pas de liste interminable visible",
+          "3": "✔ Réduction de la culpabilité",
+          "4": "✔ Progression douce et réaliste"
+        },
+        "aside": {
+          "title": "💡 Philosophie",
+          "content": "Tu n’as pas besoin de tout faire. Tu as juste besoin de commencer quelque part."
+        }
+      },
+      "howItWork": {
+        "title": "Comment ça fonctionne",
+        "description": "Simple. Intuitif. Sans surcharge.",
+        "list": {
+          "1": {
+            "title": "1. Tu ajoutes tes tâches",
+            "description": "Sans ordre, sans pression, juste ce que tu as en tête."
+          },
+          "2": {
+            "title": "2. Slowdo choisit",
+            "description": "Chaque jour, une seule tâche devient la priorité."
+          },
+          "3": {
+            "title": "3. Tu avances",
+            "description": "Tu la fais… ou pas. Aucun jugement."
+          }
+        }
+      },
+      "doItSlowly": {
+        "title": "Commence plus doucement.",
+        "description": "Une seule tâche suffit pour aujourd’hui."
+      }
+    },
+    "app": {
       "noTaskWithDone": {
         "title": "Tu as déjà fait ta tache quotidienne",
         "text": "Tu peux te détendre tranquillement."
@@ -52,11 +96,62 @@
       "markUndone": "remettre en cours",
       "remove": "supprimer",
       "back": "retour à ma tache"
+    },
+    "howToInstall": {
+      "title": "Comment installer l'application sur mon périphérique",
+      "whyInstall": {
+        "title": "Pourquoi installer l'application ?",
+        "description": "Cette application est disponible sous forme de Progressive Web App (PWA). Cela signifie que tu peux l'installer directement depuis ton navigateur, sans passer par une boutique d'applications.\\nUne fois installée, elle se comporte presque comme une application classique :",
+        "list": {
+          "1": "🚀 Lancement depuis ton écran d'accueil ou ton menu d'applications.",
+          "2": "🖥️ Ouverture dans sa propre fenêtre, sans les éléments du navigateur.",
+          "3": "⚡ Démarrage plus rapide.",
+          "4": "📶 Fonctionnement hors ligne pour les fonctionnalités qui le permettent."
+        }
+      },
+      "compatibleBrowser": {
+        "title": "Navigateurs compatibles",
+        "description": "L'installation est actuellement prise en charge sur la plupart des navigateurs basés sur Chromium, notamment :",
+        "warning": "Certains navigateurs, comme Firefox, ne permettent pas encore l'installation des Progressive Web Apps sur toutes les plateformes."
+      },
+      "howTo": {
+        "title": "Comment installer l'application ?",
+        "compatibilityCondition": "Si ton navigateur est compatible, un bouton d'installation est disponible ci-dessous.",
+        "alternativeInstall": "tu peux également utiliser le menu de ton navigateur et choisir \"Installer l'application\", \"Ajouter à l'écran d'accueil\" ou une option équivalente selon ton navigateur."
+      },
+      "data": {
+        "title": "Important : tes données",
+        "description": "L'installation de l'application ne transfère pas automatiquement les données déjà présentes dans ton navigateur.",
+        "warning": "Chaque installation possède son propre espace de stockage. Si tu installe l'application sur un nouvel appareil (ou après avoir réinstallé ton navigateur), tes données précédentes ne seront pas récupérées automatiquement."
+      },
+      "needHelp": {
+        "title": "Besoin d'aide ?",
+        "conditionnalSituation": "Si le bouton d'installation n'apparaît pas :",
+        "list": {
+          "1": "vérifie que tu utilise un navigateur compatible ;",
+          "2": "assure-toi que tu consulte le site en HTTPS ;",
+          "3": "essaye de recharger la page ;",
+          "4": "vérifie que l'application n'est pas déjà installée."
+        }
+      }
     }
   },
   "component": {
     "UiDatePicker": {
       "placeholder": "Sélectionne une date"
+    },
+    "UiModal": {
+      "action": {
+        "close": "Fermer"
+      }
+    },
+    "BlockCta": {
+      "try": "Essayer Slowdo",
+      "install": "Intaller en PWA"
+    },
+    "BlockInstallPWA": {
+      "install": "installer",
+      "error": "Malheureusement, ton navigateur ne permet pas d'installer l'application.\\nEssaye avec un autre navigateur."
     }
   },
   "layout": {

@@ -1,25 +1,25 @@
 <template lang="pug">
-nuxt-layout
+nuxt-layout(name="app")
   template(v-if="!currentTask && !toDoTasks?.length")
     ui-wrapper(:title="noTaskText.title" :subtitle="noTaskText.text")
 
   template(v-if="!currentTask && !!toDoTasks?.length")
     ui-wrapper(:title="noTaskText.title" :subtitle="noTaskText.text")
       template(#actions)
-        ui-button(variant="flat" v-if="toDoTasks.length >= 1" @click="() => selectTask(true)") {{ $t("page.index.actions.canDoAnotherTask") }}
+        ui-button(variant="flat" v-if="toDoTasks.length >= 1" @click="() => selectTask(true)") {{ $t("page.app.actions.canDoAnotherTask") }}
 
   template(v-if="currentTask")
-    ui-wrapper(:title="$t('page.index.normalTask.title')" :subtitle="$t('page.index.normalTask.text')")
+    ui-wrapper(:title="$t('page.app.normalTask.title')" :subtitle="$t('page.app.normalTask.text')")
       p(:class="$style.taskName") {{ currentTask.name }}
       template(#actions)
         div(:class="$style.actions")
-          ui-button(@click="checkTask") {{ $t("page.index.normalTask.done") }}
-          ui-button(variant="link" v-if="toDoTasks.length > 1" @click="switchTask") {{ $t("page.index.normalTask.reroll") }}
+          ui-button(@click="checkTask") {{ $t("page.app.normalTask.done") }}
+          ui-button(variant="link" v-if="toDoTasks.length > 1" @click="switchTask") {{ $t("page.app.normalTask.reroll") }}
 
   template(#actions)
-    ui-button(variant="link" :to="$localePath('app-create-task')") {{ $t("page.index.actions.addTask") }}
-    //- <ui-button variant="flat" :class="$style.ghostLink" :to="$localePath('task-list')">{{ $t('page.index.actions.taskList') }}</ui-button>
-    //- <ui-button variant="flat" v-if="false" :class="$style.ghostLink" :to="$localePath('login')">{{ $t('page.index.actions.login') }}</ui-button>
+    ui-button(variant="link" :to="$localePath('app-create-task')") {{ $t("page.app.actions.addTask") }}
+    //- <ui-button variant="flat" :class="$style.ghostLink" :to="$localePath('task-list')">{{ $t('page.app.actions.taskList') }}</ui-button>
+    //- <ui-button variant="flat" v-if="false" :class="$style.ghostLink" :to="$localePath('login')">{{ $t('page.app.actions.login') }}</ui-button>
 </template>
 
 <script setup lang="ts">
@@ -52,14 +52,14 @@ async function checkTask() {
 const noTaskText = computed(() => {
   if (todayDoneTasks?.value.length > 0) {
     return {
-      title: t('page.index.noTaskWithDone.title'),
-      text: t('page.index.noTaskWithDone.text'),
+      title: t('page.app.noTaskWithDone.title'),
+      text: t('page.app.noTaskWithDone.text'),
     }
   }
 
   return {
-    title: t('page.index.noTaskWithoutDone.title'),
-    text: t('page.index.noTaskWithoutDone.text'),
+    title: t('page.app.noTaskWithoutDone.title'),
+    text: t('page.app.noTaskWithoutDone.text'),
   }
 })
 

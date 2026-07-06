@@ -1,5 +1,5 @@
 <template lang="pug">
-nuxt-layout
+nuxt-layout(name="app")
   form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
     ui-button(:class="[$style.back, 'button']" :to="$localePath('app')" variant="link") ← {{ $t('page.tasks.back') }}
 
