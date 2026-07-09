@@ -2,6 +2,8 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      htmlAttrs: { lang: 'en' },
+      title: 'Slowdo - The anti-anxiety to-do list',
       link: [
         {
           rel: "manifest",
@@ -35,7 +37,8 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected'
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'all'
     },
     locales: [
       { code: "en", name: "English", file: "en.json" },
@@ -89,7 +92,11 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ["@vue/devtools-core", "@vue/devtools-kit"],
+      include: [
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        '@js-temporal/polyfill',
+      ],
     },
   },
   routeRules: {

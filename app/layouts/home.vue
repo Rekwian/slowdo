@@ -2,7 +2,7 @@
 div(:class="$style.mainPage")
   header(:class="$style.header")
     div(:class="$style.brand")
-      img(src="/logo.svg" :class="$style.logo")
+      img(src="/logo.svg" :class="$style.logo" alt="")
       | Slowdo
   slot
 </template>
