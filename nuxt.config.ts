@@ -32,6 +32,7 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt", // https://vite-pwa-org.netlify.app
     "@regle/nuxt", // https://reglejs.dev
     "@vueuse/nuxt", // https://vueuse.org
+    "@vercel/analytics",
   ],
   i18n: {
     defaultLocale: "en",

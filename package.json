@@ -17,6 +17,7 @@
     "@regle/core": "^1.27.2",
     "@regle/nuxt": "^1.27.2",
     "@regle/rules": "^1.27.2",
+    "@vercel/analytics": "^2.0.1",
     "@vite-pwa/nuxt": "^1.1.1",
     "@vuepic/vue-datepicker": "^14.0.0",
     "@vueuse/core": "^14.3.0",
