@@ -101,7 +101,7 @@
       "title": "Comment installer l'application sur mon périphérique",
       "whyInstall": {
         "title": "Pourquoi installer l'application ?",
-        "description": "Cette application est disponible sous forme de Progressive Web App (PWA). Cela signifie que tu peux l'installer directement depuis ton navigateur, sans passer par une boutique d'applications.\\nUne fois installée, elle se comporte presque comme une application classique :",
+        "description": "Cette application est disponible sous forme de Progressive Web App (PWA). Cela signifie que tu peux l'installer directement depuis ton navigateur, sans passer par une boutique d'applications.\nUne fois installée, elle se comporte presque comme une application classique :",
         "list": {
           "1": "🚀 Lancement depuis ton écran d'accueil ou ton menu d'applications.",
           "2": "🖥️ Ouverture dans sa propre fenêtre, sans les éléments du navigateur.",
@@ -151,7 +151,7 @@
     },
     "BlockInstallPWA": {
       "install": "installer",
-      "error": "Malheureusement, ton navigateur ne permet pas d'installer l'application.\\nEssaye avec un autre navigateur."
+      "error": "Malheureusement, ton navigateur ne permet pas d'installer l'application.\nEssaye avec un autre navigateur."
     }
   },
   "layout": {

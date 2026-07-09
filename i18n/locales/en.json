@@ -101,7 +101,7 @@
       "title": "How to install the app on your device",
       "whyInstall": {
         "title": "Why install the app?",
-        "description": "This app is available as a Progressive Web App (PWA). This means you can install it directly from your browser without using an app store.\\nOnce installed, it behaves almost like a native app:",
+        "description": "This app is available as a Progressive Web App (PWA). This means you can install it directly from your browser without using an app store.\nOnce installed, it behaves almost like a native app:",
         "list": {
           "1": "🚀 Launch it from your home screen or app menu.",
           "2": "🖥️ Open it in its own window, without browser controls.",
@@ -151,7 +151,7 @@
     },
     "BlockInstallPWA": {
       "install": "Install",
-      "error": "Unfortunately, your browser doesn't support installing this app.\\nTry using another browser."
+      "error": "Unfortunately, your browser doesn't support installing this app.\nTry using another browser."
     }
   },
   "layout": {

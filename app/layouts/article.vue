@@ -22,6 +22,7 @@ div(:class="$style.layout")
   grid-template-rows: auto 1fr auto;
   min-height: 100dvh;
   padding: 0 1rem 1rem;
+  white-space: pre-line;
 }
 
 .header {
