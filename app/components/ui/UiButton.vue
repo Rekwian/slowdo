@@ -13,7 +13,7 @@ component(
 <script setup lang="ts">
 import type { ButtonHTMLAttributes } from 'vue';
 
-const { variant = 'normal', to } = defineProps<{
+const { variant = 'normal', to, type = 'button' } = defineProps<{
   to?: string | object,
   variant?: 'normal' | 'flat' | 'link',
   type?: ButtonHTMLAttributes['type'],

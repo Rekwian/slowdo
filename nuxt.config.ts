@@ -1,17 +1,7 @@
+const baseUrl = process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  app: {
-    head: {
-      htmlAttrs: { lang: 'en' },
-      title: 'Slowdo - The anti-anxiety to-do list',
-      link: [
-        {
-          rel: "manifest",
-          href: "/manifest.webmanifest"
-        }
-      ]
-    }
-  },
   css: [
     "reset-css",
     "@vuepic/vue-datepicker/dist/main.css",
@@ -33,8 +23,10 @@ export default defineNuxtConfig({
     "@regle/nuxt", // https://reglejs.dev
     "@vueuse/nuxt", // https://vueuse.org
     "@vercel/analytics",
+    "@nuxtjs/seo", //https://nuxtseo.com
   ],
   i18n: {
+    baseUrl,
     defaultLocale: "en",
     detectBrowserLanguage: {
       useCookie: true,
@@ -42,8 +34,8 @@ export default defineNuxtConfig({
       redirectOn: 'all'
     },
     locales: [
-      { code: "en", name: "English", file: "en.json" },
-      { code: "fr", name: "French", file: "fr.json" },
+      { code: "en", name: "English", language: 'en', file: "en.json" },
+      { code: "fr", name: "French", language: 'fr', file: "fr.json" },
     ],
   },
   regle: {
@@ -91,6 +83,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  site: {
+    defaultLocale: 'en'
+  },
   vite: {
     optimizeDeps: {
       include: [
@@ -101,7 +96,12 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/app/**': { ssr: false },
+    '/app/**': { ssr: false, robots: false },
     '/*/app/**': { ssr: false }
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl,
+    }
   }
 });

@@ -1,17 +1,29 @@
 {
+  "nuxtSiteConfig": {
+    "name": "Slowdo - Une tâche par jour, sans pression",
+    "description": "Slowdo aide à réduire la surcharge mentale avec une approche simple : une seule tâche prioritaire par jour pour avancer sans pression."
+  },
   "formRules": {
     "required": "Il faut remplir ce champ"
   },
   "page": {
     "home": {
       "hero": {
-        "title": "Une seule tache\net c'est déjà suffisant",
-        "description": "Slowdo est une todo-list pensée pour réduire la surcharge mentale. Chaque jour, une seule tâche est mise en avant. Tu avances sans pression, à ton rythme.",
+        "title": "Une seule tache,\n pas de pression",
+        "description": {
+          "text": "Slowdo est une application simple pour {0}. Chaque jour, une seule tâche devient ta priorité. Tu avances à ton rythme, {1} et sans liste interminable. ",
+          "strong1": "réduire la surcharge mentale du quotidien",
+          "strong2": "sans pression"
+        },
         "cardTitle": "Aujourd’hui",
         "taskTitle": "✓ Arroser les plantes"
       },
       "whyItWork": {
-        "description": "es listes longues créent de la fatigue mentale. Slowdo réduit la charge cognitive.",
+        "description": {
+          "text": "Les listes longues créent de la {0}. Slowdo réduit la {1}.",
+          "strong1": "fatigue mentale",
+          "strong2": "charge cognitive"
+        },
         "title": "Pourquoi ça marche ?",
         "list": {
           "1": "✔ Une seule décision par jour",
@@ -21,15 +33,15 @@
         },
         "aside": {
           "title": "💡 Philosophie",
-          "content": "Tu n’as pas besoin de tout faire. Tu as juste besoin de commencer quelque part."
+          "content": "Tu n’as pas besoin de tout faire. Tu as juste besoin de commencer."
         }
       },
       "howItWork": {
-        "title": "Comment ça fonctionne",
-        "description": "Simple. Intuitif. Sans surcharge.",
+        "title": "Comment ça fonctionne ?",
+        "description": "Simple. Épuré. Sans surcharge.",
         "list": {
           "1": {
-            "title": "1. Tu ajoutes tes tâches",
+            "title": "1. Ajoutes tes tâches",
             "description": "Sans ordre, sans pression, juste ce que tu as en tête."
           },
           "2": {
@@ -155,6 +167,12 @@
     }
   },
   "layout": {
+    "default": {
+      "head": {
+        "title": "Slowdo - Une seule tâche par jour pour réduire ta charge mentale",
+        "description": "Slowdo aide à réduire la surcharge mentale avec une approche simple : une seule tâche prioritaire par jour pour avancer sans pression."
+      }
+    },
     "nav": {
       "todayTask": "Ma tache du jour",
       "taskList": "Accéder à ma liste des taches",

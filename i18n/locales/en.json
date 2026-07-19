@@ -1,44 +1,56 @@
 {
+  "nuxtSiteConfig": {
+    "name": "Slowdo - One task a day, without pressure",
+    "description": "Slowdo helps reduce mental overload with a simple approach: one priority task each day to help you move forward without pressure."
+  },
   "formRules": {
     "required": "This field is required"
   },
   "page": {
     "home": {
       "hero": {
-        "title": "Just one task\nis already enough",
-        "description": "Slowdo is a to-do list designed to reduce mental overload. Every day, just one task is highlighted. Move forward without pressure, at your own pace.",
+        "title": "Just one task,\n no pressure",
+        "description": {
+          "text": "Slowdo is a simple app designed to {0}. Every day, just one task becomes your priority. Move forward at your own pace, {1}, without endless to-do lists.",
+          "strong1": "reduce everyday mental overload",
+          "strong2": "without pressure"
+        },
         "cardTitle": "Today",
         "taskTitle": "✓ Water the plants"
       },
       "whyItWork": {
-        "description": "Long lists create mental fatigue. Slowdo reduces cognitive load.",
+        "description": {
+          "text": "Long to-do lists create {0}. Slowdo reduces your {1}.",
+          "strong1": "mental fatigue",
+          "strong2": "cognitive load"
+        },
         "title": "Why does it work?",
         "list": {
-          "1": "✔ Just one decision a day",
-          "2": "✔ No endless to-do list in sight",
+          "1": "✔ Only one decision a day",
+          "2": "✔ No endless visible to-do list",
           "3": "✔ Less guilt",
-          "4": "✔ Gentle and realistic progress"
+          "4": "✔ Gentle, realistic progress"
         },
         "aside": {
           "title": "💡 Philosophy",
-          "content": "You don't have to do everything. You just have to start somewhere."
+          "content": "You don't need to do everything. You just need to start."
         }
       },
       "howItWork": {
-        "title": "How it works",
-        "description": "Simple. Intuitive. No overwhelm.",
+        "title": "How does it work?",
+        "description": "Simple. Clean. No overload.",
         "list": {
           "1": {
             "title": "1. Add your tasks",
-            "description": "No order, no pressure—just whatever is on your mind."
+            "description": "No order, no pressure—just everything that's on your mind."
           },
           "2": {
             "title": "2. Slowdo chooses",
             "description": "Every day, one task becomes your priority."
           },
           "3": {
-            "title": "3. Make progress",
-            "description": "Do it... or don't. No judgment."
+            "title": "3. Move forward",
+            "description": "Do it… or don't. No judgment."
           }
         }
       },
@@ -49,7 +61,7 @@
     },
     "app": {
       "noTaskWithDone": {
-        "title": "You've already completed your daily task",
+        "title": "You've already completed today's task",
         "text": "You can relax now."
       },
       "noTaskWithoutDone": {
@@ -64,16 +76,16 @@
       },
       "actions": {
         "canDoAnotherTask": "I feel like doing another task",
-        "addTask": "+ one task",
+        "addTask": "+ a task",
         "taskList": "my tasks",
-        "login": "Sign in"
+        "login": "log in"
       }
     },
     "createTask": {
       "step1": {
-        "title": "What's the purpose of this task?",
+        "title": "What's the goal of this task?",
         "subTitle": "Take your time. No pressure.",
-        "placeholder": "Write something…",
+        "placeholder": "type something…",
         "validationAction": "Looks good to me"
       },
       "step2": {
@@ -83,55 +95,55 @@
       },
       "step3": {
         "title": "Is there a deadline?",
-        "validationAction": "Looks good",
-        "validationActionNoDate": "No deadline, let's go"
+        "validationAction": "Sounds good",
+        "validationActionNoDate": "no deadline, let's go"
       }
     },
     "tasks": {
-      "pending": "pending",
+      "pending": "in progress",
       "done": "completed",
       "clearAll": "delete all",
       "empty": "no tasks yet",
       "markDone": "mark as completed",
       "markUndone": "mark as pending",
       "remove": "delete",
-      "back": "back to my task"
+      "back": "back to today's task"
     },
     "howToInstall": {
       "title": "How to install the app on your device",
       "whyInstall": {
         "title": "Why install the app?",
-        "description": "This app is available as a Progressive Web App (PWA). This means you can install it directly from your browser without using an app store.\nOnce installed, it behaves almost like a native app:",
+        "description": "This app is available as a Progressive Web App (PWA). That means you can install it directly from your browser without going through an app store.\nOnce installed, it behaves almost like a native app:",
         "list": {
-          "1": "🚀 Launch it from your home screen or app menu.",
-          "2": "🖥️ Open it in its own window, without browser controls.",
+          "1": "🚀 Launch it from your home screen or app launcher.",
+          "2": "🖥️ Opens in its own window without browser controls.",
           "3": "⚡ Faster startup.",
-          "4": "📶 Offline support for available features."
+          "4": "📶 Works offline for supported features."
         }
       },
       "compatibleBrowser": {
-        "title": "Compatible browsers",
+        "title": "Supported browsers",
         "description": "Installation is currently supported on most Chromium-based browsers, including:",
         "warning": "Some browsers, such as Firefox, do not yet support installing Progressive Web Apps on all platforms."
       },
       "howTo": {
         "title": "How do I install the app?",
-        "compatibilityCondition": "If your browser is compatible, an install button is available below.",
+        "compatibilityCondition": "If your browser is compatible, an install button will appear below.",
         "alternativeInstall": "You can also open your browser's menu and choose \"Install app\", \"Add to Home Screen\", or a similar option depending on your browser."
       },
       "data": {
         "title": "Important: your data",
-        "description": "Installing the app does not automatically transfer data already stored in your browser.",
-        "warning": "Each installation has its own storage space. If you install the app on a new device (or after reinstalling your browser), your previous data won't be restored automatically."
+        "description": "Installing the app does not automatically transfer the data already stored in your browser.",
+        "warning": "Each installation has its own storage space. If you install the app on a new device (or after reinstalling your browser), your previous data will not be restored automatically."
       },
       "needHelp": {
         "title": "Need help?",
         "conditionnalSituation": "If the install button doesn't appear:",
         "list": {
           "1": "make sure you're using a compatible browser;",
-          "2": "check that you're visiting the site over HTTPS;",
-          "3": "try refreshing the page;",
-          "4": "make sure the app isn't already installed."
+          "2": "make sure you're visiting the site over HTTPS;",
+          "3": "try reloading the page;",
+          "4": "check that the app isn't already installed."
         }
       }
     }
@@ -151,12 +163,18 @@
     },
     "BlockInstallPWA": {
       "install": "Install",
-      "error": "Unfortunately, your browser doesn't support installing this app.\nTry using another browser."
+      "error": "Unfortunately, your browser doesn't support installing this app.\nTry using a different browser."
     }
   },
   "layout": {
+    "default": {
+      "head": {
+        "title": "Slowdo - One task a day to reduce mental overload",
+        "description": "Slowdo helps reduce mental overload with a simple approach: one priority task each day to help you move forward without pressure."
+      }
+    },
     "nav": {
-      "todayTask": "My task for today",
+      "todayTask": "Today's task",
       "taskList": "Go to my task list",
       "menu": "Menu",
       "howToInstall": "How to install the app on your device"

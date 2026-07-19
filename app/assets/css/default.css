@@ -118,3 +118,11 @@ input:not([type="radio"]):not([type="checkbox"]) {
 input[type="datetime-local"] {
   color-scheme: dark;
 }
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}

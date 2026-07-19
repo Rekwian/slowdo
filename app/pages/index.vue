@@ -5,7 +5,9 @@ nuxt-layout(name="home")
     div
       h1 {{ $t('page.home.hero.title') }}
 
-      p {{ $t('page.home.hero.description')}}
+      i18n-t(keypath="page.home.hero.description.text" tag="p")
+        strong {{ $t('page.home.hero.description.strong1') }}
+        strong {{ $t('page.home.hero.description.strong2') }}
 
       block-cta
 
@@ -33,7 +35,10 @@ nuxt-layout(name="home")
   section(:class="[$style.whyItWork, $style.section]")
       div(:class="$style.head")
         h2 {{ $t('page.home.whyItWork.title') }}
-        p L{{ $t('page.home.whyItWork.description') }}
+
+        i18n-t(keypath="page.home.whyItWork.description.text" tag="p")
+          strong {{ $t('page.home.whyItWork.description.strong1') }}
+          strong {{ $t('page.home.whyItWork.description.strong2') }}
 
       div(:class="$style.cards")
         ul(:class="$style.card")
@@ -43,7 +48,8 @@ nuxt-layout(name="home")
           li {{ $t('page.home.whyItWork.list.4') }}
         div(:class="[$style.card, $style.thought]")
           h3 {{ $t('page.home.whyItWork.aside.title') }}
-          p {{ $t('page.home.whyItWork.aside.content') }}
+          p
+            em {{ $t('page.home.whyItWork.aside.content') }}
 
   // DO IT SLOWLY
   section(:class="[$style.section]")
@@ -52,6 +58,12 @@ nuxt-layout(name="home")
       p {{ $t('page.home.doItSlowly.description') }}
 
     block-cta
+
+  footer(:class="$style.footer")
+    p
+      em Slowdo n'est pas une application de productivité. <br/>
+      | C'est une application d'accompagnement du quotidien, pensée pour avancer un pas à la fois. <br/>
+      | Remettre l'humain avant la performance.
 </template>
 
 <style module>
@@ -122,9 +134,7 @@ nuxt-layout(name="home")
   .cards {
     display: grid;
     gap: 4rem;
-    /* grid-template-columns: max-content minmax(200px, 300px); */
     justify-content: center;
-    /* width: 100%; */
   }
 
   .card {
@@ -132,6 +142,20 @@ nuxt-layout(name="home")
     flex-direction: column;
     justify-content: center;
     width: 100%;
+  }
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  height: 300px;
+  justify-content: center;
+  text-align: center;
+
+  &::before, &::after {
+    content: '---'
   }
 }
 

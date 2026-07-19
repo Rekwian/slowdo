@@ -4,7 +4,8 @@ div(:class="$style.mainPage")
     div(:class="$style.brand")
       img(src="/logo.svg" :class="$style.logo" alt="")
       | Slowdo
-  slot
+  main
+    slot
 </template>
 
 <style module>

@@ -9,7 +9,7 @@ nuxt-layout(name="app")
         ui-field-error(:errors="r$.name.$errors")
 
         template(#actions)
-          ui-button(@click="!r$.$invalid && goToStep('length')" type="button" :disabled="r$.$invalid") {{ $t('page.createTask.step1.validationAction') }}
+          ui-button(@click="!r$.$invalid && goToStep('length')" :disabled="r$.$invalid") {{ $t('page.createTask.step1.validationAction') }}
 
     fieldset(v-show="step === 'length'")
       ui-wrapper(:title="$t('page.createTask.step2.title')")
@@ -17,7 +17,7 @@ nuxt-layout(name="app")
           label(v-for="(label, length) in lengths" :key="length")
             input(type="radio" name="length" :value="length" v-model="lengthChoice" required)
 
-            ui-button(@click="lengthChoice = length; goToStep('deadline')" type="button") {{ label }}
+            ui-button(@click="lengthChoice = length; goToStep('deadline')") {{ label }}
 
     fieldset(v-show="step === 'deadline'")
       ui-wrapper(:title="$t('page.createTask.step3.title')")
