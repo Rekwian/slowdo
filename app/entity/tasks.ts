@@ -1,6 +1,5 @@
 import { Temporal } from '@js-temporal/polyfill';
 
-
 export type Task = {
   id?: number | IDBValidKey,
   name: string | null,
@@ -38,7 +37,6 @@ export const deNormalize = (item: Task) => JSON.parse(JSON.stringify({
   selected: item.selected && item.selected.toString(),
   done: item.done && item.done.toString(),
 }))
-
 
 /**
  * Normalizes the task object by converting string dates to Temporal.PlainDateTime objects.

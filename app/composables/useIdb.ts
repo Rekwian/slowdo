@@ -17,20 +17,6 @@ export default () => {
     });
   };
 
-  const getTask = async (): Promise<Task[]> => {
-    const db = await $indexedDB.getDB();
-
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction('todos', 'readonly');
-      const store = tx.objectStore('todos');
-
-      const request = store.getAll();
-
-      request.onsuccess = () => resolve(request.result as Task[]);
-      request.onerror = () => reject(request.error);
-    });
-  };
-
   const add = async (task: Task): Promise<boolean> => {
     const db = await $indexedDB.getDB();
 
@@ -78,7 +64,6 @@ export default () => {
     add,
     update,
     remove,
-    getTask,
   };
 };
 

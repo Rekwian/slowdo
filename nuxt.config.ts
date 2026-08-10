@@ -62,10 +62,20 @@ export default defineNuxtConfig({
       name: "Slowdo",
       start_url: '/app',
       id: '/app',
-      short_name: "Slow todo list",
+      short_name: "Slowdo",
       theme_color: "#4a8a96",
       background_color: "#4a8a96",
       description: "Anti-productive application that allows you to complete the task without overloading your mind. Do it at your own pace.",
+
+      display: "standalone",
+      lang: "en",
+      scope: "/",
+      dir: "ltr",
+      orientation: "natural",
+      categories: [
+        "utilities"
+      ],
+
       screenshots: [
         {
           src: "/screenshots/desktop.png",
