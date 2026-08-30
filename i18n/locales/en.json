@@ -1,5 +1,6 @@
 {
   "nuxtSiteConfig": {
+    "brand": "Slowdo",
     "name": "Slowdo - One task a day, without pressure",
     "description": "Slowdo helps reduce mental overload with a simple approach: one priority task each day to help you move forward without pressure."
   },
@@ -148,6 +149,28 @@
       }
     }
   },
+  "contact": {
+    "title": "Contact us",
+    "form": {
+      "email": {
+        "label": "Email address"
+      },
+      "pattern": {
+        "label": "Reason",
+        "options": {
+          "question": "General question",
+          "bug": "Report a bug",
+          "suggest": "Suggestion / idea",
+          "rgpd": "Request concerning my data",
+          "security": "Security issue",
+          "other": "Other"
+        }
+      },
+      "message": {
+        "label": "Message"
+      }
+    }
+  },
   "component": {
     "UiDatePicker": {
       "placeholder": "Select a date"
@@ -167,10 +190,14 @@
     }
   },
   "layout": {
-    "default": {
-      "head": {
-        "title": "Slowdo - One task a day to reduce mental overload",
-        "description": "Slowdo helps reduce mental overload with a simple approach: one priority task each day to help you move forward without pressure."
+    "normal": {
+      "menu": {
+        "useApp": "Use Slowdo"
+      }
+    },
+    "article": {
+      "menu": {
+        "useApp": "Use Slowdo"
       }
     },
     "nav": {

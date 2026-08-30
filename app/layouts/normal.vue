@@ -65,32 +65,5 @@ div(:class="$style.layout")
   padding: 1rem;
   text-align: left;
   width: 100%;
-
-  h2 {
-    font-size: clamp(1.4rem, 5vw, 2rem);
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    text-decoration: underline;
-  }
-
-  strong {
-    font-weight: bold;
-  }
-
-  ul {
-    color: var(--color-background-text-muted);
-    list-style-type: disc;
-    padding-left: 2rem;
-  }
-
-  blockquote {
-    color: var(--color-background-text-muted);
-  }
-
-  p {
-    color: var(--color-background-text-muted);
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-  }
 }
 </style>

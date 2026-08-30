@@ -1,15 +1,15 @@
 <template lang="pug">
 nuxt-layout(name="app")
-  form(@submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter")
+  ui-glass-sheet(tag="form" @submit.prevent="handleSubmit" @keydown.enter.prevent="handleEnter" :class="$style.card")
     ui-button(:class="[$style.back, 'button']" :to="$localePath('app')" variant="link") ← {{ $t('page.tasks.back') }}
 
     fieldset(v-show="step === 'name'")
       ui-wrapper(:title="$t('page.createTask.step1.title')" :subtitle="$t('page.createTask.step1.subTitle')")
-        input(autocomplete="off" name="name" :placeholder="$t('page.createTask.step1.placeholder')" v-model="r$.$value.name")
+        ui-field-text(autocomplete="off" name="name" :placeholder="$t('page.createTask.step1.placeholder')" v-model="r$.$value.name")
         ui-field-error(:errors="r$.name.$errors")
 
         template(#actions)
-          ui-button(@click="!r$.$invalid && goToStep('length')" :disabled="r$.$invalid") {{ $t('page.createTask.step1.validationAction') }}
+          ui-button(@click="goToStep('length')" :disabled="r$.$invalid") {{ $t('page.createTask.step1.validationAction') }}
 
     fieldset(v-show="step === 'length'")
       ui-wrapper(:title="$t('page.createTask.step2.title')")
@@ -60,7 +60,13 @@ const { r$ } = useRegle(
   }
 );
 
-function handleSubmit() {
+async function handleSubmit() {
+  const { valid } = await r$.$validate();
+
+  if (!valid) {
+    return;
+  }
+
   const task = {
     ...newTask,
     name: r$.$value.name,
@@ -79,20 +85,21 @@ function handleSubmit() {
 
 function handleEnter() {
   const currentIndex = steps.indexOf(step.value);
-  console.group(steps[currentIndex]);
   if (currentIndex < steps.length - 1) {
-    console.log(steps[currentIndex + 1]);
     goToStep(steps[currentIndex + 1])
   }
 
   if (currentIndex === steps.length - 1) {
-    console.log('handleEnter');
     handleSubmit();
   }
-  console.groupEnd();
 }
 
-function goToStep(newStep?: string) {
+async function goToStep(newStep?: string) {
+  const { valid } = await r$.$validate();
+
+  if (!valid) {
+    return;
+  }
   if (newStep && steps.includes(newStep)) {
     router.push({ query: { step: newStep } })
   }

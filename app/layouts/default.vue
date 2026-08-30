@@ -4,10 +4,11 @@ slot
 
 <script setup lang="ts">
 const config = useRuntimeConfig();
+const { t } = useI18n();
 
 useSeoMeta({
-  ogTitle: 'Slowdo - Une seule tâche à la fois',
-  ogDescription: 'Réduis ta charge mentale avec une application simple qui met une seule tâche en avant chaque jour.',
+  ogTitle: `${t('nuxtSiteConfig.name')}`,
+  ogDescription: `${t('nuxtSiteConfig.description')}`,
   ogImage: `${config.public.baseUrl}/logo.svg`,
   ogUrl: config.public.baseUrl,
   twitterCard: 'summary_large_image',

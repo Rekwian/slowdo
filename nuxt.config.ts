@@ -24,7 +24,13 @@ export default defineNuxtConfig({
     "@vueuse/nuxt", // https://vueuse.org
     "@vercel/analytics",
     "@nuxtjs/seo", //https://nuxtseo.com
+    "nuxt-nodemailer", // https://github.com/kleinpetr/nuxt-nodemailer
   ],
+  nodemailer: {
+    from: '"No-reply" <team@rellyk.com>',
+    host: 'localhost',
+    port: 1025,
+  },
   i18n: {
     baseUrl,
     defaultLocale: "en",

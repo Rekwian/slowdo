@@ -41,6 +41,7 @@
   --color-background-gradient: rgb(0 0 0);
   --color-background-text: var(--color-primary);
   --color-background-text-muted: hsl(212 23% 69%);
+  --color-background-text-placeholder: hsl(212 23% 29%);
   /* --color-background-text-muted: hsl(from var(--color-primary) h s 40%); */
   --color-background-hover: hsl(from var(--color-primary) h s 18%);
   --color-error: hsl(2 42% 67%);
@@ -86,32 +87,33 @@ h1 {
 }
 
 /* ── Input ── */
-input:not([type="radio"]):not([type="checkbox"]) {
+.input {
   appearance: none;
   background-color: transparent;
-  border: none;
-  border-bottom: 1.5px solid var(--color-primary);
+  border: 1px solid hsla(from var(--color-primary) h s 20% / 0.2);
+  border-radius: 0.6rem;
   color: var(--color-background-text);
   font-family: 'Quicksand', sans-serif;
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
   font-style: italic;
-  font-weight: 400;
-  max-width: 580px;
-  min-width: 300px;
   outline: none;
-  padding: 0.4rem 0.2rem 0.6rem;
-  text-align: center;
-  transition: border-color var(--transition), color var(--transition);
+  padding: 0.6rem 1rem 0.6rem;
+  transition: var(--transition);
   width: 100%;
 
   &::placeholder {
-    color: var(--color-background-text-muted);
+    color: var(--color-background-text-placeholder);
   }
 
   &:hover,
   &:focus {
     border-color: var(--color-primary-hover);
   }
+}
+
+textarea.input {
+  border-bottom-right-radius: 0;
+  resize: vertical;
 }
 
 /* datetime-local */
@@ -125,4 +127,11 @@ strong {
 
 em {
   font-style: italic;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .input {
+    border-color: hsla(from var(--color-primary) h s l / 0.2);
+  }
 }

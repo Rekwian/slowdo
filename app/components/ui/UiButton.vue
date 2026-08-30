@@ -64,7 +64,7 @@ const variantClass = css[variant] ?? css.normal
 
   &:disabled {
     cursor: default;
-    filter: blur(0.2rem);
+    filter: blur(0.1rem);
     opacity: 0.5;
   }
 

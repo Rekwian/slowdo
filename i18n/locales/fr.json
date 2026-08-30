@@ -1,5 +1,6 @@
 {
   "nuxtSiteConfig": {
+    "brand": "Slowdo",
     "name": "Slowdo - Une tâche par jour, sans pression",
     "description": "Slowdo aide à réduire la surcharge mentale avec une approche simple : une seule tâche prioritaire par jour pour avancer sans pression."
   },
@@ -146,6 +147,28 @@
           "4": "vérifie que l'application n'est pas déjà installée."
         }
       }
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "form": {
+        "email": {
+          "label": "Addresse mail"
+        },
+        "pattern": {
+          "label": "Motif",
+          "options": {
+            "question": "Question générale",
+            "bug": "Signaler un bug",
+            "suggest": "Suggestion / idée",
+            "rgpd": "Demande concernant mes données",
+            "security": "Problème de sécurité",
+            "other": "Autre"
+          }
+        },
+        "message": {
+          "label": "Message"
+        }
+      }
     }
   },
   "component": {
@@ -167,10 +190,14 @@
     }
   },
   "layout": {
-    "default": {
-      "head": {
-        "title": "Slowdo - Une seule tâche par jour pour réduire ta charge mentale",
-        "description": "Slowdo aide à réduire la surcharge mentale avec une approche simple : une seule tâche prioritaire par jour pour avancer sans pression."
+    "normal": {
+      "menu": {
+        "useApp": "Utiliser Slowdo"
+      }
+    },
+    "article": {
+      "menu": {
+        "useApp": "Utiliser Slowdo"
       }
     },
     "nav": {
