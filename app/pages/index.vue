@@ -62,8 +62,8 @@ nuxt-layout(name="home")
   footer(:class="$style.footer")
     p
       em Slowdo n'est pas une application de productivité. <br/>
-      | C'est une application d'accompagnement du quotidien, pensée pour avancer un pas à la fois. <br/>
-      | Remettre l'humain avant la performance.
+        | C'est une application d'accompagnement du quotidien, pensée pour avancer un pas à la fois. <br/>
+        | Remettre l'humain avant la performance.
 </template>
 
 <style module>

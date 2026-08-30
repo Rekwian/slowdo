@@ -187,6 +187,14 @@
     "BlockInstallPWA": {
       "install": "installer",
       "error": "Malheureusement, ton navigateur ne permet pas d'installer l'application.\nEssaye avec un autre navigateur."
+    },
+    "UiFooter": {
+      "links": {
+        "contact": "Contact",
+        "termsOfUse": "Condition d'utilisation",
+        "legalNotice": "Mentions légales",
+        "privacyPolicy": "Politique de confidentialité"
+      }
     }
   },
   "layout": {

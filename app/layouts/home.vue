@@ -2,10 +2,10 @@
 div(:class="$style.mainPage")
   header(:class="$style.header")
     div(:class="$style.brand")
-      img(src="/logo.svg" :class="$style.logo" alt="")
-      | Slowdo
+      icons-logo
   main
     slot
+  ui-footer
 </template>
 
 <style module>

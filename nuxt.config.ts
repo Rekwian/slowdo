@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     "@vercel/analytics",
     "@nuxtjs/seo", //https://nuxtseo.com
     "nuxt-nodemailer", // https://github.com/kleinpetr/nuxt-nodemailer
+    "@comark/nuxt", // https://comark.dev/rendering/nuxt#nuxt-ui-integration
   ],
   nodemailer: {
     from: '"No-reply" <team@rellyk.com>',

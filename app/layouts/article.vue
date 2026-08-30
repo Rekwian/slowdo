@@ -2,9 +2,7 @@
 div(:class="$style.layout")
   header(:class="$style.header")
     div(:class="$style.brand")
-      nuxt-link(:to="$localePath('index')" :class="$style.logoLink")
-        img(src="/logo.svg" :class="$style.logo" alt="")
-        | {{ $t('nuxtSiteConfig.brand') }}
+      icons-logo
 
     nav
       ul
@@ -13,6 +11,8 @@ div(:class="$style.layout")
 
   main(:class="$style.main")
     slot
+
+  ui-footer
 </template>
 
 <style module>
@@ -22,15 +22,7 @@ div(:class="$style.layout")
   grid-template-areas: "header" "main" "footer";
   grid-template-rows: auto 1fr auto;
   min-height: 100dvh;
-  padding: 0 1rem 1rem;
   white-space: pre-line;
-}
-
-.logoLink {
-  align-items: center;
-  color: inherit;
-  display: flex;
-  text-decoration: none;
 }
 
 .header {
@@ -39,6 +31,7 @@ div(:class="$style.layout")
   display: flex;
   justify-content: space-between;
   min-height: 4rem;
+  padding: 0 1rem;
   position: sticky;
   top: 0;
   width: 100%;
@@ -46,12 +39,6 @@ div(:class="$style.layout")
   .brand {
     display: flex;
     font-weight: 500;
-  }
-
-  .logo {
-    height: 100%;
-    margin: auto 1rem auto auto;
-    max-width: 3rem;
   }
 }
 
@@ -61,8 +48,8 @@ div(:class="$style.layout")
   color: var(--color-background-text);
   grid-area: main;
   margin: auto;
-  max-width: 600px;
-  padding: 1rem;
+  max-width: 700px;
+  padding: 5rem 1rem;
   text-align: left;
   width: 100%;
 

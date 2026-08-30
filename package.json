@@ -11,6 +11,7 @@
     "lint:css": "stylelint '**/*.{vue,scss,css}'"
   },
   "dependencies": {
+    "@comark/nuxt": "^0.5.1",
     "@js-temporal/polyfill": "^0.5.1",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^10.4.1",
