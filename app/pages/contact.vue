@@ -75,7 +75,7 @@ async function handleSubmit() {
     body: {
       email: r$.$value.email,
       message: r$.$value.message,
-      pattern: r$.$value.pattern,
+      pattern: r$.$value.pattern && t(r$.$value.pattern),
     }
   })
 

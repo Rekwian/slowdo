@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
   return sendMail({
     from: body.email,
-    subject: body.pattern,
+    subject: `[Slowdo] ${body.pattern}`,
     text: body.message,
     to: 'team@rellyk.com'
   })

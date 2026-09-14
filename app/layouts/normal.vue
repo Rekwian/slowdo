@@ -31,6 +31,7 @@ div(:class="$style.layout")
   display: flex;
   justify-content: space-between;
   min-height: 4rem;
+  padding: 0 1rem;
   position: sticky;
   top: 0;
   width: 100%;
