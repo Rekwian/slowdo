@@ -147,27 +147,30 @@
           "4": "check that the app isn't already installed."
         }
       }
-    }
-  },
-  "contact": {
-    "title": "Contact us",
-    "form": {
-      "email": {
-        "label": "Email address"
-      },
-      "pattern": {
-        "label": "Reason",
-        "options": {
-          "question": "General question",
-          "bug": "Report a bug",
-          "suggest": "Suggestion / idea",
-          "rgpd": "Request concerning my data",
-          "security": "Security issue",
-          "other": "Other"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "form": {
+        "email": {
+          "label": "Email address"
+        },
+        "pattern": {
+          "label": "Reason",
+          "options": {
+            "question": "General question",
+            "bug": "Report a bug",
+            "suggest": "Suggestion / idea",
+            "rgpd": "Request concerning my data",
+            "security": "Security issue",
+            "other": "Other"
+          }
+        },
+        "message": {
+          "label": "Message"
+        },
+        "action": {
+          "send": "Send"
         }
-      },
-      "message": {
-        "label": "Message"
       }
     }
   },
@@ -187,6 +190,14 @@
     "BlockInstallPWA": {
       "install": "Install",
       "error": "Unfortunately, your browser doesn't support installing this app.\nTry using a different browser."
+    },
+    "UiFooter": {
+      "links": {
+        "contact": "Contact",
+        "termsOfUse": "Terms of use",
+        "legalNotice": "Legal notice",
+        "privacyPolicy": "Privacy policy"
+      }
     }
   },
   "layout": {
@@ -206,5 +217,9 @@
       "menu": "Menu",
       "howToInstall": "How to install the app on your device"
     }
+  },
+  "validation": {
+    "required": "This field is required",
+    "enum": "This option does not exist"
   }
 }

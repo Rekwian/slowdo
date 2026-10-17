@@ -152,7 +152,7 @@
       "title": "Contactez-nous",
       "form": {
         "email": {
-          "label": "Addresse mail"
+          "label": "Addresse email"
         },
         "pattern": {
           "label": "Motif",
@@ -167,6 +167,9 @@
         },
         "message": {
           "label": "Message"
+        },
+        "action": {
+          "send": "Envoyer"
         }
       }
     }
@@ -214,5 +217,9 @@
       "menu": "Menu",
       "howToInstall": "Comment installer l'application sur mon périphérique"
     }
+  },
+  "validation": {
+    "required": "Le champ est obligatoire",
+    "enum": "La selection n'existe pas"
   }
 }

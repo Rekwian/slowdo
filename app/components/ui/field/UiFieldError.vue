@@ -18,6 +18,7 @@ withDefaults(
 <style module>
 .error {
   font-size: 1rem;
+  line-break: anywhere;
   margin: 0;
   min-height: 2rem;
 }
