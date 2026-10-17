@@ -82,7 +82,7 @@ async function handleSubmit() {
     return;
   }
 
-  const result = await $fetch('http://slowdo-api.localhost/feedback/send', {
+  const result = await $fetch('/api/n/feedback/send', {
     method: 'POST',
     body: {
       email: r$.$value.email,
