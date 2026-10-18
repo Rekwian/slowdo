@@ -117,7 +117,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/app/**': { ssr: false, robots: false },
     '/*/app/**': { ssr: false },
-    '/api/s/**': { proxy: `${process.env.API_URL}/api/s/**`}
+    '/api/s/**': { proxy: `${process.env.API_URL}/api/**`}
   },
   runtimeConfig: {
     apiUrl: 'http://slowdo-api.localhost',

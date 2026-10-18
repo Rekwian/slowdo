@@ -1,5 +1,8 @@
 <template lang="pug">
-p(:class="{ [$style.error]: true, [$style.hideDetails]: hideDetails }")
+p(
+  :class="{ [$style.error]: true, [$style.hideDetails]: hideDetails }"
+  role="alert"
+)
   span(v-for="error of errors") {{ error }}
 </template>
 

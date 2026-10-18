@@ -1,10 +1,11 @@
 <template lang="pug">
 ui-field-text(
-  autocomplete="off"
+  autocomplete="email"
   type="email"
   :name="name"
   :placeholder="placeholder"
   v-model="model"
+  v-bind="$attrs"
 )
 </template>
 

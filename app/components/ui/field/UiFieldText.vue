@@ -5,6 +5,7 @@ input(
   :name="name"
   :placeholder="placeholder"
   v-model="model"
+  v-bind="$attrs"
   class="input"
 )
 </template>

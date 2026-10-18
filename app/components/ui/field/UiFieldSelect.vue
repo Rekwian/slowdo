@@ -1,11 +1,16 @@
 <template lang="pug">
-select(v-model="model" class="input")
+select(
+  v-model="model"
+  class="input"
+  autocomplete="off"
+  v-bind="$attrs"
+)
   option(
     v-for="(option, key) in options"
     :key="key"
     :value="option.value"
-    v-bind="option.attrs"
     :class="$style.option"
+    v-bind="option.attrs"
   ) {{ option.name }}
 </template>
 

@@ -15,7 +15,7 @@ import type { ButtonHTMLAttributes } from 'vue';
 
 const { variant = 'normal', to, type = 'button' } = defineProps<{
   to?: string | object,
-  variant?: 'normal' | 'flat' | 'link',
+  variant?: 'plain' | 'flat' | 'link',
   type?: ButtonHTMLAttributes['type'],
   disabled?: ButtonHTMLAttributes['disabled'],
 }>()
@@ -32,7 +32,7 @@ const is = computed(() => {
   return 'button';
 })
 
-const variantClass = css[variant] ?? css.normal
+const variantClass = css[variant] ?? css.plain
 </script>
 
 
