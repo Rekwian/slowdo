@@ -17,23 +17,17 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-  "@nuxtjs/google-fonts", // https://google-fonts.nuxtjs.org
-  "@nuxtjs/i18n", // https://i18n.nuxtjs.org
-  "@vite-pwa/nuxt", // https://vite-pwa-org.netlify.app
-  "@regle/nuxt", // https://reglejs.dev
-  "@vueuse/nuxt", // https://vueuse.org
-  "@vercel/analytics",
-  "@nuxtjs/seo", //https://nuxtseo.com
-  "nuxt-nodemailer", // https://github.com/kleinpetr/nuxt-nodemailer
-  "@comark/nuxt", // https://comark.dev/rendering/nuxt#nuxt-ui-integration
-  "botid/nuxt", // https://vercel.com/docs/botid/get-started?framework=nuxt
-  "nuxt-security" // https://nuxt-security.vercel.app
-],
-  nodemailer: {
-    from: '"No-reply" <team@rellyk.com>',
-    host: 'localhost',
-    port: 1025,
-  },
+    "@nuxtjs/google-fonts", // https://google-fonts.nuxtjs.org
+    "@nuxtjs/i18n", // https://i18n.nuxtjs.org
+    "@vite-pwa/nuxt", // https://vite-pwa-org.netlify.app
+    "@regle/nuxt", // https://reglejs.dev
+    "@vueuse/nuxt", // https://vueuse.org
+    "@vercel/analytics",
+    "@nuxtjs/seo", //https://nuxtseo.com
+    "@comark/nuxt", // https://comark.dev/rendering/nuxt#nuxt-ui-integration
+    "botid/nuxt", // https://vercel.com/docs/botid/get-started?framework=nuxt
+    "nuxt-security" // https://nuxt-security.vercel.app
+  ],
   i18n: {
     baseUrl,
     defaultLocale: "en",
@@ -108,16 +102,21 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
-        "@vue/devtools-core",
-        "@vue/devtools-kit",
+        '@comark/vue',
         '@js-temporal/polyfill',
-      ],
-    },
+        '@regle/core',
+        '@regle/rules',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        '@vuepic/vue-datepicker',
+        'date-fns/locale',
+      ]
+    }
   },
   routeRules: {
     '/app/**': { ssr: false, robots: false },
     '/*/app/**': { ssr: false },
-    '/api/s/**': { proxy: `${process.env.API_URL}/api/**`}
+    '/api/s/**': { proxy: `${process.env.API_URL}/api/**` }
   },
   runtimeConfig: {
     apiUrl: 'http://slowdo-api.localhost',

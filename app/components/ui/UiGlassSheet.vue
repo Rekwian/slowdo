@@ -1,13 +1,10 @@
 <template lang="pug">
-component(:is="tag" :class="$style.glass")
+component(:is="tag" :class="$style.glass" v-bind="$attrs")
   slot
 </template>
 
 <script setup lang="ts">
-withDefaults(
-  defineProps<{ tag?: string }>(),
-  { tag: 'div' }
-);
+const { tag = 'div' } = defineProps<{ tag?: string }>();
 </script>
 
 <style module>

@@ -10,6 +10,7 @@ import { checkBotId } from 'botid/server';
  */
 export default defineEventHandler(async (event) => {
   const { apiUrl } = useRuntimeConfig();
+  const locale = getRouterParam(event, 'locale')
 
   const verification = await checkBotId();
 
@@ -21,5 +22,5 @@ export default defineEventHandler(async (event) => {
   }
 
   // Proxy the request to the feedback API endpoint
-  return proxyRequest(event, `${apiUrl}/api/s/feedback/send`);
+  return proxyRequest(event, `${apiUrl}/api/${locale}/feedback/send`);
 });
