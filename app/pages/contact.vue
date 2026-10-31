@@ -151,7 +151,7 @@ async function handleSubmit() {
   try {
     loading.value = true;
 
-    await $fetch('/api/n/fr/feedback/send', {
+    await $fetch('/api/fr/feedback/send', {
       method: 'POST',
       body: {
         email: formData.email,
