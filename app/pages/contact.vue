@@ -8,7 +8,7 @@ nuxt-layout(name="normal")
     v-if="serverError"
     :class="$style.sheet"
   )
-    | Une erreur est survenu, veuillez reesayer plus tard
+    | {{ t('api.error.serverError') }}
     ui-button(@click="serverError = false") fermer
 
   //- SERVER SUCCESS
@@ -16,7 +16,7 @@ nuxt-layout(name="normal")
     v-else-if="serverSuccess"
     :class="$style.sheet"
   )
-    | Votre message a bien été envoyé.
+    | {{ t('page.contact.form.response.messageSendWithSuccess') }}
     ui-button(@click="closeSuccess") fermer
 
   //- FORM
@@ -106,7 +106,6 @@ const patternOptions = [
 
 const options = [
   { name: '', value: null, attrs: { hidden: true }},
-  { name: 'toto', value: 'tata' },
   ...patternOptions.map((value) => ({ name: value, value }))
   // @TODO: Send key instead of translate message
 ]
@@ -171,7 +170,7 @@ async function handleSubmit() {
         pattern: [],
     }
 
-    if (e instanceof FetchError && e.data?.errors.length) {
+    if (e instanceof FetchError && e.data?.errors?.length) {
       e.data.errors.forEach((error: error) => {
         const { field, message } = error
 

@@ -170,6 +170,9 @@
         },
         "action": {
           "send": "Envoyer"
+        },
+        "response": {
+          "messageSendWithSuccess": "Votre message a bien été envoyé."
         }
       }
     }
@@ -221,5 +224,10 @@
   "validation": {
     "required": "Le champ est obligatoire",
     "enum": "La selection n'existe pas"
+  },
+  "api": {
+    "error": {
+      "serverError": "Une erreur est survenu, veuillez reesayer plus tard"
+    }
   }
 }

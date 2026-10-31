@@ -170,6 +170,9 @@
         },
         "action": {
           "send": "Send"
+        },
+        "response": {
+          "messageSendWithSuccess": "Your message has been sent."
         }
       }
     }
@@ -221,5 +224,10 @@
   "validation": {
     "required": "This field is required",
     "enum": "This option does not exist"
+  },
+  "api": {
+    "error": {
+      "serverError": "An error occurred, please try again later"
+    }
   }
 }
